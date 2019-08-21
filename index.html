@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Happy learning every day</title>
+    <style>
+        body {
+            margin: 0;
+        }
+
+        .i-code,
+        .i-preview {
+            width: 50%;
+            height: 100%;
+            position: absolute;
+            z-index: 1;
+        }
+
+        .i-preview {
+            left: 50%;
+        }
+
+        iframe{
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+
+        .i-menu{
+            position: absolute;
+            width: 100%;
+            background-color: red;
+            height: 9px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="i-menu">
+
+    </div>
+    <div class="i-code">
+
+    </div>
+    <div class="i-preview">
+        <iframe src="pages/css/css1.html"></iframe>
+    </div>
+    <script>
+        function loadXMLDoc() {
+            var xmlhttp;
+            if (window.XMLHttpRequest) {
+                //  IE7+, Firefox, Chrome, Opera, Safari 浏览器执行代码
+                xmlhttp = new XMLHttpRequest();
+            } else {
+                // IE6, IE5 浏览器执行代码
+                xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
+            }
+            xmlhttp.onreadystatechange = function () {
+                if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
+                    console.log(xmlhttp.responseText)
+                    console.log(xmlhttp)
+                }
+            }
+            xmlhttp.open("GET", "pages/css/page.html", true);
+            xmlhttp.send();
+        }
+        loadXMLDoc()
+    </script>
+</body>
+
+</html>
