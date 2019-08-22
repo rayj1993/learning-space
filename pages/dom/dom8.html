@@ -16,47 +16,27 @@
 <body>
     <textarea></textarea>
     <script>
+        // 第一题
         let textarea = document.querySelector('textarea');
+
+        // 第二题
         textarea.setAttribute('rows', 5);
         textarea.rows = 5;
-        let height = document.defaultView.getComputedStyle(textarea, null)['height'];
-        let lineHeight = parseFloat(document.defaultView.getComputedStyle(textarea, null)['line-height'])
-        textarea.style.height = textarea.rows * lineHeight + 'px'
+
+        // 第三题
+        let { height, lineHeight, paddingTop, paddingBottom } = window.getComputedStyle(textarea);
+        // let height = document.defaultView.getComputedStyle(textarea, null)['height'];
+        // let lineHeight = parseFloat(document.defaultView.getComputedStyle(textarea, null)['line-height'])
+
+        // 第四题
+        textarea.style.height = textarea.rows * lineHeight + 'px';
+
+        //第五题
         document.addEventListener('DOMNodeInserted', function (event) {
             let textarea = event.target;
             let lineHeight = parseFloat(document.defaultView.getComputedStyle(textarea, null)['line-height']);
             textarea.style.height = lineHeight * textarea.rows + 'px';
         });
-        console.log(textarea)
-        console.log(lineHeight)
-        // // 1
-        // let textarea = document.querySelector('textarea');
-        // console.log(textarea);
-
-        // // 2
-        // // textarea.setAttribute('rows', 5);
-        // textarea.rows = 5;
-        // // 3
-
-        // let height = document.defaultView.getComputedStyle(textarea, null)['height'];
-        // console.log(height);
-        // // 4
-        // console.log(document.defaultView.getComputedStyle(textarea, null)['line-height']);
-        // let lineHeight = parseFloat(document.defaultView.getComputedStyle(textarea, null)['line-height'])
-        // textarea.style.height = textarea.rows * lineHeight + 'px'
-        // console.log(lineHeight);
-        // // 5
-        // document.addEventListener('DOMNodeInserted', function (event) {
-        //     let textarea = event.target;
-        //     let lineHeight =  parseFloat(document.defaultView.getComputedStyle(textarea, null)['line-height']);
-        //     textarea.style.height = lineHeight * textarea.rows + 'px';
-        // });
-        // let { height1, lineHeight1, paddingTop, paddingBottom } = window.getComputedStyle(textarea);
-        // console.log(height1); // 30px
-        // console.log(lineHeight1); //normal
-        // console.log(paddingTop); // 2px
-        // console.log(paddingBottom); // 2px
-
     </script>
 </body>
 
