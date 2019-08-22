@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>css1</title>
+    <style>
+        .icon-delete {
+            display: inline-block;
+            width: 16px;
+            height: 16px;
+            margin-top: 20px;
+            background-image: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQBAMAAADt3eJSAAAAFVBMVEUAAABUWmxUWmxUWmxUWmxUWmxUWmw8H2eOAAAABnRSTlMAj/3LOzynOwS2AAAAOklEQVQI12MAArFEBjBgTEsTADPYUsISgJRZGhgkIxhsIGEgCURpQEQ+IwVkjlsC0EogAFsrBqITGQB2MhzB6n7HpwAAAABJRU5ErkJggg==");
+        }
+
+        .css-tips {
+            position: relative;
+        }
+
+        .css-tips:hover::before {
+            content: attr(data-title);
+            transition: 0.15s 0.15s;
+            position: absolute;
+            background-color: #000;
+            color: #fff;
+            word-break: keep-all;
+            bottom: 100%;
+            margin-bottom: 0.5em;
+            left: 50%;
+            transform: translate(-50%);
+            font-size: 12px;
+            padding: 2px 10px;
+        }
+
+        .css-tips:hover::after {
+            content: "";
+            transition: 0.15s 0.15s;
+            width: 0;
+            height: 0;
+            border: 0.5em solid;
+            border-color: #000 transparent transparent transparent;
+            position: absolute;
+            bottom: 100%;
+            margin-bottom: -0.5em;
+            left: 50%;
+            transform: translate(-50%);
+        }
+    </style>
+</head>
+
+<body>
+    <a href="javascript:" class="icon-delete css-tips" data-title="删除" role="button"></a>
+</body>
+
+</html>

@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>css6</title>
+    <style>
+        .audio-wrap {
+            height: 56px;
+            display: inline-block;
+            border-radius: 28px;
+            background: var(--Secondary);
+            --Primary: black;
+            --Secondary: #f1f3f4;
+            line-height: 56px;
+            padding: 0 28px;
+            word-spacing: 0.5em;
+            white-space: nowrap;
+        }
+
+        /* audio-play */
+        .audio-play {
+            display: inline-block;
+            border: 7px solid var(--Primary);
+            border-right: 0;
+            border-top-color: transparent;
+            border-bottom-color: transparent;
+            box-sizing: border-box;
+            border-left-width: 11px;
+        }
+
+        .audio-now::after {
+            content: ' / ';
+            word-spacing: 0;
+        }
+
+        /* audio-progressbar */
+        .audio-progressbar {
+            -webkit-appearance: none;
+            outline: 0;
+            border-radius: var(--x1);
+            cursor: ew-resize;
+            height: 4px;
+            background: var(--Primary);
+            vertical-align: middle;
+        }
+
+        .audio-progressbar::-webkit-slider-runnable-track {
+            -webkit-appearance: none;
+            border-radius: 50%;
+            height: 12px;
+        }
+
+        .audio-progressbar::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            height: 0;
+            width: 0;
+            border-radius: 50%;
+            border: 6px solid var(--Primary);
+        }
+
+        /* audio-volume */
+        .audio-volume {
+            display: inline-block;
+        }
+
+        .audio-volume::after {
+            content: "";
+            display: inline-block;
+            width: 4px;
+            height: 6px;
+            background: var(--Primary);
+            border: 5px solid var(--Secondary);
+            border-right-color: var(--Primary);
+            vertical-align: middle;
+        }
+
+        .audio-volume::before {
+            content: "";
+            display: inline-block;
+            background: var(--Primary);
+            border-radius: 50%;
+            width: 18px;
+            height: 18px;
+            position: absolute;
+            margin: 20px 0 0 7px;
+            clip-path: inset(0% 0% 0% 50%);
+            box-shadow: 0 0 0 2px var(--Primary) inset, 0 0 0 5px #f1f1f1 inset;
+        }
+
+        /* audio-menu */
+        .audio-menu {
+            display: inline-block;
+            width: 4px;
+            height: 4px;
+            background: var(--Primary);
+            vertical-align: middle;
+            margin-left: 21px;
+        }
+
+        .audio-menu::before,
+        .audio-menu::after {
+            content: "";
+            display: inline-block;
+            width: 4px;
+            height: 4px;
+            background: var(--Primary);
+            position: absolute;
+        }
+
+        .audio-menu::before {
+            margin-top: -6px;
+        }
+
+        .audio-menu::after {
+            margin-top: 6px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="audio-wrap">
+        <a class="audio-play" href="javascript:" title="播放/暂停"></a>
+        <span class="audio-now" title="当前时刻">0:05</span><span class="audio-timeAll" title="时长">0:05</span>
+        <input class="audio-progressbar" type="range" title="时间进度">
+        <a class="audio-volume" href="javascript:" title="音量"></a>
+        <a class="audio-menu" href="javascript:" title="菜单"></a>
+    </div>
+</body>
+
+</html>

@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>css1</title>
+    <style>
+        /* 解法2：flex 方案 */
+        .btn-group {
+            display: flex;
+            margin-left: -0.5rem;
+            margin-right: -0.5rem;
+        }
+
+        .btn-group+.btn-group {
+            margin-top: 15px;
+        }
+
+        .btn {
+            flex: 1;
+            padding: 6px 0;
+            margin: 0 0.5rem;
+            text-align: center;
+            color: #666;
+            background: transparent;
+            border: 1px solid;
+            border-radius: 10em;
+        }
+
+        .btn-danger {
+            color: #ef7077;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="btn-group">
+        <button class="btn btn-danger">按钮</button>
+    </div>
+    <div class="btn-group">
+        <button class="btn btn-danger">按钮</button>
+        <button class="btn btn-danger">按钮</button>
+    </div>
+    <div class="btn-group">
+        <button class="btn btn-danger">按钮</button>
+        <button class="btn btn-danger">按钮</button>
+        <button class="btn btn-danger">按钮</button>
+    </div>
+</body>
+
+</html>

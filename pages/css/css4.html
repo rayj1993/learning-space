@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>css1</title>
+    <style>
+        body {
+            margin: 0;
+        }
+
+        html {
+            font-size: 16px;
+        }
+
+        @media screen and (min-width: 375px) {
+            html {
+                /* iPhone6的375px尺寸作为16px基准，414px正好18px大小, 600 20px */
+                font-size: calc(100% + 2 * (100vw - 375px) / 39);
+                font-size: calc(16px + 2 * (100vw - 375px) / 39);
+            }
+        }
+
+        @media screen and (min-width: 414px) {
+            html {
+                /* 414px-1000px每100像素宽字体增加1px(18px-22px) */
+                font-size: calc(112.5% + 4 * (100vw - 414px) / 586);
+                font-size: calc(18px + 4 * (100vw - 414px) / 586);
+            }
+        }
+
+        .i-chat-room {
+            border: 1px solid;
+        }
+
+        .i-chat-msg {
+            display: flex;
+        }
+
+        .i-chat-msg::after {
+            content: "";
+            display: inline-block;
+            width: 30px;
+        }
+
+        .i-chat-container {
+            flex: 1;
+        }
+
+        .i-chat-msg[data-self] {
+            direction: rtl;
+            /*改变css流向*/
+        }
+
+        .msg-list {
+            height: 100%;
+            overflow: auto;
+            list-style: none;
+            margin: 0;
+            padding: 0;
+        }
+
+        .msg-item {
+            display: flex;
+            padding: 7px;
+            margin-bottom: 15px;
+        }
+
+        .msg-item::after {
+            content: "";
+            display: inline-block;
+            width: 44px;
+        }
+
+        .msg-avator {
+            width: 44px;
+            height: 44px;
+            border-radius: 50%;
+            object-fit: cover;
+        }
+
+        .msg-info {
+            flex: 1;
+            text-align: start;
+            padding: 0 10px;
+            overflow: hidden;
+        }
+
+        .msg-user {
+            margin: 0;
+            font-weight: normal;
+            font-size: 13px;
+            color: #949ead;
+        }
+
+        .msg-user span {
+            display: inline-block;
+        }
+
+        .msg-time {
+            padding: 0 8px;
+        }
+
+        .msg-txt {
+            position: relative;
+            display: inline-flex;
+            background: #f2f5f9;
+            border-color: #f2f5f9;
+            font-size: 14px;
+            line-height: 1.5;
+            color: #2c3038;
+            padding: 0.6em 1em;
+            text-align: left;
+            margin: 5px 0 0;
+            border-radius: 6px;
+        }
+
+        .msg-txt::before {
+            content: "";
+            position: absolute;
+            width: 1.4em;
+            height: 1.2em;
+            top: 0;
+            margin-inline-start: -3em;
+            -webkit-margin-start: -3em;
+            /**qq浏览器有点兼容性问题，需要加上这个**/
+            border-top-right-radius: 40% 50%;
+            border-top-left-radius: 40% 50%;
+            border-left: 0.6em solid;
+            border-right: 0.6em solid;
+            border-color: inherit;
+        }
+
+        /** data-self（message from myself） **/
+        .msg-item[data-self] {
+            direction: rtl;
+            /*改变css流向*/
+        }
+
+        .msg-item[data-self] .msg-txt {
+            background: #00afff;
+            border-color: #00afff;
+            color: #fff;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="i-chat-room">
+        <div class="i-chat-msg">
+            <span class="i-chat-avator">
+                <img class="msg-avator" alt="head"
+                    src="https://tva4.sinaimg.cn/crop.0.0.750.750.180/75f2b996jw8f6zkdm7qp7j20ku0kudgr.jpg" />
+            </span>
+            <span class="i-chat-container">
+                <h3>
+                    <span class="i-chat-username">古天乐</span>
+                    <span class="i-chat-time">9月30日 21:47</span>
+                </h3>
+                <p>什么秘密什么秘密什么秘密什么秘密什么秘密什么秘密什么秘密什么秘密什么秘密什么秘密什么秘密什么秘密什么秘密什么秘密什么秘密什么秘密什么秘密什么秘密什么秘密什么秘密什么秘密什么秘密什么秘密什么秘密什么秘密什么秘密什么秘密
+                </p>
+            </span>
+        </div>
+        <div class="i-chat-msg" data-self>
+            <span class="i-chatroom-head">
+                <img class="msg-avator" alt="head"
+                    src="https://tvax4.sinaimg.cn/crop.0.0.512.512.180/6cd7bd09ly8fsnom1e5wtj20e80e8gm7.jpg" />
+            </span>
+            <span class="i-chatroom-container">
+                <h3>
+                    <span class="i-chat-username">郑秀文</span>
+                    <span class="i-chat-time">9月30日 21:47</span>
+                </h3>
+                <p>什么秘密什么秘密什么秘密什么秘密什么秘密什么秘密什么秘密什么秘密什么秘密</p>
+            </span>
+        </div>
+    </div>
+    <ul class="msg-list">
+        <li class="msg-item">
+            <img class="msg-avator" alt="head"
+                src="https://tva4.sinaimg.cn/crop.0.0.750.750.180/75f2b996jw8f6zkdm7qp7j20ku0kudgr.jpg" />
+            <div class="msg-info">
+                <h3 class="msg-user">
+                    <span class="msg-name">提按生</span>
+                    <span class="msg-time">9月30日 21:47</span>
+                </h3>
+                <p class="msg-txt">什么秘密什么秘密什么秘密什么秘密什么秘密什么秘密什么秘密什么秘密什么秘密</p>
+            </div>
+        </li>
+        <li class="msg-item">
+            <img class="msg-avator" alt="head"
+                src="https://tvax4.sinaimg.cn/crop.0.0.512.512.180/6cd7bd09ly8fsnom1e5wtj20e80e8gm7.jpg" />
+            <div class="msg-info">
+                <h3 class="msg-user">
+                    <span class="msg-name">提按生</span>
+                    <span class="msg-time">9月30日 21:47</span>
+                </h3>
+                <p class="msg-txt">什么秘密</p>
+            </div>
+        </li>
+        <li class="msg-item" data-self>
+            <img class="msg-avator" alt="head"
+                src="https://tvax3.sinaimg.cn/crop.135.0.810.810.180/006LO43wly8frjay2sypvj30u00mita5.jpg" />
+            <div class="msg-info">
+                <h3 class="msg-user">
+                    <span class="msg-name">提按生</span>
+                    <span class="msg-time">9月30日 21:47</span>
+                </h3>
+                <p class="msg-txt">什么秘密</p>
+            </div>
+        </li>
+        <li class="msg-item" data-self>
+            <img class="msg-avator" alt="head"
+                src="https://tvax3.sinaimg.cn/crop.135.0.810.810.180/006LO43wly8frjay2sypvj30u00mita5.jpg" />
+            <div class="msg-info">
+                <h3 class="msg-user">
+                    <span class="msg-name">提按生</span>
+                    <span class="msg-time">9月30日 21:47</span>
+                </h3>
+                <p class="msg-txt">什么秘密什么秘密什么秘密什么秘密什么秘密什么秘密什么秘密什么秘密什么秘密什么秘密什么秘密什么秘密什么秘密</p>
+            </div>
+        </li>
+        <li class="msg-item">
+            <img class="msg-avator" alt="head"
+                src="https://tva1.sinaimg.cn/crop.0.0.750.750.180/006bQeGsjw8f1tgl7z9ncj30ku0kuq44.jpg" />
+            <div class="msg-info">
+                <h3 class="msg-user">
+                    <span class="msg-name">提按生</span>
+                    <span class="msg-time">9月30日 21:47</span>
+                </h3>
+                <p class="msg-txt">什么秘密</p>
+            </div>
+        </li>
+    </ul>
+</body>
+
+</html>

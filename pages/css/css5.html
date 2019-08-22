@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>css5</title>
+    <style>
+        .color-container {
+            --width: calc((100vw - 20px) / 5 - 10px);
+            display: grid;
+            padding: 10px;
+            grid-template-columns: repeat(5, 1fr);
+            grid-auto-rows: var(--width);
+            grid-gap: 10px;
+            background: #fff;
+            border: 1px #e5e5e5 solid;
+            list-style-type: none;
+        }
+
+        /*可选中的input radio*/
+        input {
+            display: none;
+        }
+
+        /*色块*/
+        .color-item {
+            display: flex;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            word-break: break-all;
+        }
+
+        /*色块选中效果*/
+        input:checked+.color-item {
+            box-shadow: 0 0 0 4px black;
+        }
+
+        /*色块背景*/
+
+        li:nth-child(7n + 1) .color-item {
+            background: #424242;
+        }
+
+        li:nth-child(7n + 2) .color-item {
+            background: #8c8c8c;
+        }
+
+        li:nth-child(7n + 3) .color-item {
+            background: #d48b69;
+        }
+
+        li:nth-child(7n + 4) .color-item {
+            background: #fecb66;
+        }
+
+        li:nth-child(7n + 5) .color-item {
+            background: #c54941;
+        }
+
+        li:nth-child(7n + 6) .color-item {
+            background: #591c93;
+        }
+
+        li:nth-child(7n + 7) .color-item {
+            background: #e6e6e6;
+        }
+    </style>
+</head>
+
+<body>
+    <ul class="color-container">
+        <li>
+            <input id="color1" type="radio" name="color" />
+            <label for="color1" class="color-item"></label>
+        </li>
+        <li>
+            <input id="color2" type="radio" name="color" />
+            <label for="color2" class="color-item"></label>
+        </li>
+        <li>
+            <input id="color3" type="radio" name="color" />
+            <label for="color3" class="color-item"></label>
+        </li>
+        <li>
+            <input id="color4" type="radio" name="color" />
+            <label for="color4" class="color-item"></label>
+        </li>
+        <li>
+            <input id="color5" type="radio" name="color" />
+            <label for="color5" class="color-item"></label>
+        </li>
+        <li>
+            <input id="color6" type="radio" name="color" />
+            <label for="color6" class="color-item"></label>
+        </li>
+    </ul>
+</body>
+
+</html>

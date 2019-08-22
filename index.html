@@ -36,20 +36,62 @@
 
         .i-menu {
             position: absolute;
-            width: 100%;
-            height: 9px;
+            top: 0;
+            bottom: 0;
+            width: 309px;
+            /* height: 309px; */
+            left: -300px;
             z-index: 3;
+            overflow: hidden;
+            transition: left .5s, opacity .5s, background-color .5s;
+            opacity: 0;
+            text-align: center;
+        }
+
+        .i-menu:hover {
+            left: 0;
+            opacity: 1;
+            background: linear-gradient(45deg, #6cf, #f66);
+            /* background-color: #1e1e1e; */
+        }
+
+        h5 {
+            color: #fff;
+            text-indent: 10px;
+        }
+
+        div.ui-button,
+        .ui-button {
+            border: 1px solid #f66;
+            padding: 0.6rem 0.9rem;
+            background: #efefef;
+            border-radius: 5px;
+            cursor: pointer;
+            margin: 10px;
+        }
+
+        .ui-button.active {
+            background: linear-gradient(45deg, #f66, #6cf);
         }
     </style>
 </head>
 
 <body>
-    <div class="i-menu" id="i-menu"></div>
+    <div class="i-menu" id="j-menu">
+        <h5>Wisdom in the mind is better than money in the hand.</h5>
+        <div>
+            <div class="ui-button active">css</div>
+            <div class="ui-button">dom</div>
+            <div class="ui-button">js</div>
+        </div>
+        <div id="questions">
+        </div>
+    </div>
     <div class="i-code">
         <textarea class="form-control" id="code" name="code"></textarea>
     </div>
     <div class="i-preview">
-        <iframe src="pages/dom/dom8.html"></iframe>
+        <iframe id="j-frame" src="pages/css/css1.html"></iframe>
     </div>
     <script src="plugins/codemirror/lib/codemirror.js"></script>
     <!--javascript代码高亮-->
@@ -65,18 +107,17 @@
     <script src="plugins/codemirror/addon/fold/brace-fold.js"></script>
     <script src="plugins/codemirror/addon/fold/comment-fold.js"></script>
     <script>
-        var editor = CodeMirror.fromTextArea(document.getElementById("code"), {
+        var editor = CodeMirror.fromTextArea(document.getElementById('code'), {
             //实现javascript代码高亮
-            // mode: "text/javascript",
-            mode: "application/x-ejs",
+            mode: 'application/x-ejs',
             //显示行号
             lineNumbers: true,
             //设置主题
-            theme: "vscode-dark",
+            theme: 'vscode-dark',
             //代码折叠
             lineWrapping: true,
             foldGutter: true,
-            gutters: ["CodeMirror-linenumbers", "CodeMirror-foldgutter"],
+            gutters: ['CodeMirror-linenumbers', 'CodeMirror-foldgutter'],
             //括号匹配
             matchBrackets: true,
             //只读
@@ -84,14 +125,14 @@
         });
         editor.setSize('100%', '100%');
 
-        function loadXMLDoc() {
+        function loadXMLDoc(url) {
             var xmlhttp;
             if (window.XMLHttpRequest) {
                 //  IE7+, Firefox, Chrome, Opera, Safari 浏览器执行代码
                 xmlhttp = new XMLHttpRequest();
             } else {
                 // IE6, IE5 浏览器执行代码
-                xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
+                xmlhttp = new ActiveXObject('Microsoft.XMLHTTP');
             }
             xmlhttp.onreadystatechange = function () {
                 if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
@@ -100,10 +141,45 @@
                     return xmlhttp.responseText
                 }
             }
-            xmlhttp.open("GET", "pages/dom/dom8.html", true);
+            xmlhttp.open('GET', url, true);
             xmlhttp.send();
         }
-        loadXMLDoc()
+        // 第一次初始化
+        loadXMLDoc('pages/css/css1.html');
+
+        let [css, dom, js] = [10, 8, 9];
+        let activeBtn = null;
+        let frame = document.getElementById('j-frame');
+        // 默认遍历css
+        let fragment = document.createDocumentFragment();
+        for (let i = 1; i < css + 1; i++) {
+            let button = document.createElement('button')
+            button.type = 'button'
+            button.className = 'ui-button'
+            button.innerText = 'css' + i;
+            if (i == 1) {
+                activeBtn = button;
+                button.classList.add('active');
+            }
+            fragment.appendChild(button);
+        }
+        questions.appendChild(fragment)
+
+        document.addEventListener('click', function (event, index) {
+            let element = event.target;
+            console.log(event);
+            if (element.className.includes('ui-button') && element.nodeName == 'BUTTON') {
+                activeBtn.className = 'ui-button';
+                element.classList.add('active');
+                activeBtn = element;
+                loadXMLDoc('pages/css/' + element.innerText + '.html');
+                frame.src = 'pages/css/' + element.innerText + '.html';
+            } else if (element.nodeName == 'DIV' && element.className.includes('ui-button')) {
+
+            }
+        });
+
+        // 还要记录上次选中的状态
     </script>
 </body>
 

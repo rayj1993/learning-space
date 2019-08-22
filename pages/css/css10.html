@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>css1</title>
+    <style>
+        ::-webkit-details-marker {
+            display: none;
+        }
+
+        ::-moz-list-bullet {
+            font-size: 0;
+            float: left;
+        }
+
+        summary {
+            outline: 0;
+        }
+
+        .ui-menu-wrap {
+            width: 200px;
+        }
+
+        .ui-btn {
+            line-height: 40px;
+            padding: 0 25px;
+            font-size: 14px;
+            color: #666;
+            transition: 0.3s;
+            cursor: pointer;
+        }
+
+        .ui-btn:hover {
+            background: #edf9ff;
+            color: #33b2ee;
+        }
+
+        .ui-menu-list .ui-btn {
+            display: block;
+        }
+
+        .ui-menu-summary {
+            position: relative;
+            line-height: 40px;
+            padding: 0 10px;
+            color: #333;
+            font-size: 14px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: 0.3s;
+            user-select: none;
+        }
+
+        .ui-menu-summary:focus {
+            background: #edf9ff;
+        }
+
+        .ui-menu-summary::after {
+            content: "";
+            position: absolute;
+            right: 10px;
+            top: 50%;
+            margin-top: 3px;
+            width: 6px;
+            height: 6px;
+            border: 2px solid;
+            border-width: 2px 2px 0 0;
+            transform: translateY(-10px) rotate(135deg);
+            transition: 0.3s;
+        }
+
+        .ui-menu[open] .ui-menu-summary::after {
+            transform: translateY(-8px) rotate(-45deg);
+        }
+    </style>
+</head>
+
+<body>
+    <aside class="ui-menu-wrap">
+        <details class="ui-menu" open>
+            <summary class="ui-menu-summary">布局</summary>
+            <div class="ui-menu-list">
+                <a class="ui-btn">Flex 布局</a>
+                <a class="ui-btn">Grid 布局</a>
+                <a class="ui-btn">Shapes 布局</a>
+                <a class="ui-btn">Flex 布局</a>
+                <a class="ui-btn">Flex 布局</a>
+            </div>
+        </details>
+        <details class="ui-menu" open>
+            <summary class="ui-menu-summary">组件</summary>
+            <div class="ui-menu-list">
+                <a class="ui-btn">按钮</a>
+                <a class="ui-btn">输入框</a>
+                <a class="ui-btn">下拉列表</a>
+                <a class="ui-btn">单选框</a>
+            </div>
+        </details>
+    </aside>
+</body>
+
+</html>

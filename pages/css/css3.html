@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>css1</title>
+    <style>
+        ul {
+            list-style: none;
+            width: 300px;
+        }
+
+        ul li {
+            display: table;
+        }
+
+        ul .ui-content {
+            display: table-cell;
+            white-space: nowrap;
+            text-overflow: ellipsis;
+            overflow: hidden;
+        }
+
+        ul .ui-tag {
+            display: table-cell;
+        }
+    </style>
+</head>
+
+<body>
+    <!--novalidate 属性规定当提交表单时不对其进行验证。-->
+    <form class="login-box" novalidate>
+        <fieldset>
+            <legend>登录</legend>
+            <div class="login-body">
+                <p class="account">
+                    <input class="i-account-input" name="account" placeholder="账号/手机" tabindex="1">
+                </p>
+                <p class="password">
+                    <input tabindex="2" placeholder="密码" type="password">
+                    <a href="javascript:" class="fogort-password">忘记密码？</a>
+                </p>
+                <p class="captcha">
+                    <input tabindex="3" name="code" autocomplete="off" placeholder="验证码">
+                    <span>
+                        <img src="" alt="验证码" class="captcha-img">
+                    </span>
+                </p>
+            </div>
+            <button type="submit" class="login-btn" tabindex="4">登录</button>
+            <a href="javascript:">立即注册</a>
+        </fieldset>
+    </form>
+</body>
+
+</html>
