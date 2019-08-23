@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>js 基础测试38</title>
+</head>
+
+<body>
+    <script>
+        var xhr = new XMLHttpRequest();
+        var target = xhr.upload;
+        //进度
+        target.onprogress = function (ev) {
+            console.log(ev);
+        }
+        //成功
+        target.onload = function () {
+            console.log('success');
+        }
+        //失败
+        target.onerror = function () {
+            console.log('fail');
+        }
+        xhr.open("POST", '/upload', true);
+        xhr.send(file);
+
+        const filterFiles = [...files].filter((el) => {
+            return el.size <= 1024 * 1024; //1M
+        })
+
+        const promise = function (file) {
+            return new Promise(function (resolve, reject) {
+                var xhr = new XMLHttpRequest();
+                var target = xhr.upload;
+                target.onloadend = function () {
+                    //console.log('complete');
+                    resolve();
+                }
+                target.onerror = function () {
+                    //fail
+                    reject();
+                }
+                xhr.open("POST", '/upload', true);
+                xhr.send(file);
+            });
+        }
+
+        const promises = [...files].map(function (file) {
+            return promise(file);
+        })
+
+        Promise.all(promises).then(function (values) {
+            //console.log('all complete');
+        });
+    </script>
+</body>
+
+</html>

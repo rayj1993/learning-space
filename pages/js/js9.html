@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>js 基础测试37</title>
+</head>
+
+<body>
+    <script>
+        const object1 = {
+            userid: 123,
+            username: '王二',
+            tel: '13208033621'
+        }
+        // 1. encodeURI 与 encodeURIComponent 的主要区别在需要转义的字符范围不一样
+
+        // 2.
+        var objString = new URLSearchParams(object1).toString()
+
+        // 3. 这个题目总分两分感觉不简单?
+        var urlString = window.location.search
+
+        // 4.
+        var urlSearchParams = new URLSearchParams(urlString)
+        var urlObj = {}
+        for (let [key, value] of urlSearchParams.entries()) {
+            urlObj[key] = value
+        }
+
+        // 5.
+        var repeatUrlObj = {}
+        for (let [key, value] of urlSearchParams.entries()) {
+            if (!repeatUrlObj[key]) {
+                repeatUrlObj[key] = value
+            } else if (
+                repeatUrlObj[key] &&
+                typeof repeatUrlObj[key] === 'string'
+            ) {
+                repeatUrlObj[key] = [repeatUrlObj[key]]
+                repeatUrlObj[key].push(value)
+            } else {
+                repeatUrlObj[key].push(value)
+            }
+        }
+    </script>
+</body>
+
+</html>

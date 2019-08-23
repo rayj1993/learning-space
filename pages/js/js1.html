@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>js 基础测试29</title>
+</head>
+
+<body>
+    <script>
+        let str = `在 LeanCloud上，，
+              数据存储13是——围绕AVObject 进行3DAY的。。，
+              每个 AVObject都包含,了与 JSON 兼容的key-value,
+              对应的 ——数据。 数据是 schema-free 的，
+              你不需要１０００在每个 AVObject 上提前指定存《Stay hungry，stay foolish.》在哪些键 ，
+              只要直接设定对应的 key-value 即可。乔布斯那「Stay hungry，stay foolish.」句话是怎么说的？「Stay hungry,stay foolish。」
+              `
+        // 中英文之间需要增加空格 就是中文和英语之间没有空格的位置
+        let reg1 = /(?:[\u4e00-\u9fa5][a-z]|[a-z][\u4e00-\u9fa5])/gi
+        // 中文与数字之间需要增加空格
+        let reg2 = /([\u4e00-\u9fa5]+\d+|\d+[\u4e00-\u9fa5]+)/g
+        // 数字与单位之间需要增加空格
+        let reg3 = /\d[a-z]+/gi
+        // 全角标点与其他字符之间不加空格
+        let reg4 =
+            /([\s\S]{2}[\！|\·|\【|\】|\「|\」|\；|\：|\“|\”|\，|\《|\。|\》|\、|\？]\s+)|[\s+(\！|\·|\【|\】|\「|\」|\；|\：|\“|\”|\，|\《|\。|\》|\、|\？)[\s\S]{2}]/g
+        let strPunct = '！（）【】｛｝《》「」“”‘’；：，。？、'
+        let regPunct = strPunct.split('').join('|');
+        //如果用了/s 就会把换行符也匹配 m支持多行匹配
+        let reg10 = new RegExp(`(?:[${regPunct}] +| +[${regPunct}])`, 'gim')
+
+        // 不重复使用标点符号
+        let reg5 =
+            /(\~|\`|\!|\[|\]|\{|\}|\;|\:|\"|\'|\,|\&lt;|\.|\>|\/|\?|\！|\·|\【|\】\「\」|\；|\：|\“|\”|\，|\《|\。|\》|\、|\？)\1+/g
+        // 破折号前后需要增加一个空格
+        let reg6 = /(\S(——)|(——)\S)/g
+        // 使用全角中文标点
+        let reg7 = /([^A-Za-z][\~|\`|\!|\[|\]|\{|\}|\;|\:|\"|\'|\,|\&lt;|\.|\>|\/|\?][^A-Za-z])/g
+        // 数字使用半角字符 全角的范围
+        let reg8 = /[\uFF10-\uFF19]+/g
+        // 遇到完整的英文整句、特殊名词，其內容使用半角标点，分前匹配，后匹配
+        let reg9 =
+            /(\「[A-Za-z\s\~|\`|\!|\;|\:|\"|\'|\,|\&lt;|\.|\>|\/|\?]*[\！|\·|\；|\：|\“|\”|\，\。|\、|\？][^\」]*\」)|(\《[A-Za-z\s\~|\`|\!|\;|\:|\"|\'|\,|\&lt;|\.|\>|\/|\?]*[\！|\·|\；|\：|\“|\”|\，\。|\、|\？][^\》]*\》)/g
+
+        console.log(str.match(reg1))
+        console.log(str.match(reg2))
+    </script>
+</body>
+
+</html>

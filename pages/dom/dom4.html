@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>dom 基础测试30</title>
+</head>
+
+<body>
+    <script>
+        // 在i-preview的开头插入代码
+        let slider = document.createElement("div");
+        slider.className = "slider";
+        slider.innerHTML = '<button class="slider-track"></button><button class="slider-thumb"></button>';
+        document.body.appendChild(slider);
+        slider.style.setProperty("--percent", 50);
+        slider.addEventListener("mousedown", function (ev) {
+            const {
+                left,
+                width
+            } = slider.getBoundingClientRect();
+            const percent = ((ev.clientX - left) / width) * 100;
+            render(slider, percent);
+            document.onmousemove = function (ev) {
+                const percent = ((ev.clientX - left) / width) * 100;
+                render(slider, percent);
+            };
+            document.onmouseup = function (ev) {
+                document.onmousemove = null;
+            };
+        });
+        slider.addEventListener("keydown", function (ev) {
+            slider.focus();
+            let percent = Number(
+                getComputedStyle(slider).getPropertyValue("--percent")
+            );
+            switch (ev.keyCode) {
+                case 37:
+                    percent -= 1;
+                    break;
+                case 39:
+                    percent += 1;
+                    break;
+                default:
+                    break;
+            }
+            render(slider, percent);
+        });
+
+        function render(slider, percent) {
+            percent = Math.min(Math.max(0, percent), 100);
+            slider.style.setProperty("--percent", parseInt(percent, 10));
+            // 这里取整导致有些不跟手的感觉（不过有些滑动条确实有步长的设置），只是为了让css-tip可以应用上'--percent属性（可以另外设置属性解决）
+        }
+    </script>
+</body>
+
+</html>

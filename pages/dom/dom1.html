@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>dom 基础测试27</title>
+    <style>
+        #j-back-top {
+            position: fixed;
+            bottom: 50px;
+            right: 50px;
+            cursor: pointer;
+            display: none;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="j-back-top">回到顶部</div>
+    <div style="height:100%; overflow-y:scroll;" id="j-dom1">
+        <div style="height:3000px;"></div>
+    </div>
+    <script>
+        /**
+         * 1. 根据题目意思，首先我要知道，一屏幕的标准是多少
+         * 2. 给滚动条添加监听，如果大于一屏幕的值就显示，否则就隐藏
+         */
+        let box = document.querySelector('#j-dom1')
+        let height = box.offsetHeight
+        let backTop = document.querySelector('#j-back-top')
+        box.addEventListener('scroll', function () {
+            let n = box.scrollTop
+            if (n > height) {
+                backTop.style.display = 'block'
+            } else {
+                backTop.style.display = 'none'
+            }
+        })
+        backTop.addEventListener('click', function () {
+            box.scrollTop = 0
+        })
+    </script>
+</body>
+
+</html>

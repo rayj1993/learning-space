@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>dom 基础测试32</title>
+</head>
+
+<body>
+    <script>
+        // 因为文档片段存在于内存中，并不在DOM树中，所以将子元素插入到文档片段时不会引起页面回流（对元素位置和几何上的计算）。因此，使用文档片段通常会带来更好的性能。
+        let fragment = document.createDocumentFragment();
+        for (let i = 0; i < 20; i++) {
+            let box = document.createElement('div')
+            box.className = 'box'
+            box.draggable = false
+            fragment.appendChild(box)
+        }
+
+        let box = document.getElementById('box')
+        box.appendChild(fragment)
+
+        document.addEventListener('transitionend', longClick)
+        document.addEventListener('mouseup', handleUp)
+        document.addEventListener('touchend', handleUp)
+
+        let start = []
+
+        function longClick(ev) {
+            if (ev.target.className.includes('box')) {
+                ev.target.classList.add('active')
+                document.addEventListener('mousemove', handleMove)
+                document.addEventListener('touchmove', handleMove)
+            }
+        }
+
+        function handleUp(ev) {
+            if (start.length) {
+                start.length = 0;
+            } else {
+                if (!ev.target.className.includes('box')) {
+                    clear()
+                }
+            }
+
+            // 会从当前selection对象中移除所有的range对象
+            window.getSelection().removeAllRanges();
+            document.removeEventListener('mousemove', handleMove)
+            document.removeEventListener('touchmove', handleMove)
+
+        }
+        // 这是一个矩形的碰撞 开始区域内 计算盒子是否在xy轴内就可以了 ，还要一直与起始位置做交互
+        function handleMove(ev) {
+            var ev = ev.touches && ev.touches[0] || ev;
+            if (!start.length) {
+                start = [ev.pageX, ev.pageY];
+            }
+            document.querySelectorAll('.box').forEach(function (el) {
+                /**
+                 * x2 + w2 > x1 && x1 + w1 > x2 
+                 * y2 + h2 > y1 && yz + h1 > y2
+                 */
+                // 初始位置和鼠标现在的位置，取最小的那个
+                var _x = Math.min(start[0], ev.pageX);
+                var _y = Math.min(start[1], ev.pageY);
+                var _l = Math.max(start[0], ev.pageX);
+                var _t = Math.max(start[1], ev.pageY);
+                var $w = el.offsetWidth;
+                var $h = el.offsetHeight;
+                var $x = el.offsetLeft;
+                var $y = el.offsetTop;
+                var $l = $x + $w;
+                var $t = $y + $h;
+                if ($l - $w < _l && $l > _x && $t - $h <= _t && $t >= _y) {
+                    el.classList.add('active');
+                } else {
+                    el.classList.remove('active');
+                }
+            })
+        }
+
+        function clear() {
+            document.querySelectorAll('.box').forEach(function (el) {
+                el.classList.remove('active')
+            })
+        }
+    </script>
+</body>
+
+</html>

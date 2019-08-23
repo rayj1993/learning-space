@@ -5,37 +5,27 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>dom基础测试 36</title>
-    <style>
-        textarea {
-            line-height: 20px;
-        }
-    </style>
+    <title>dom 基础测试34</title>
 </head>
 
 <body>
-    <textarea></textarea>
+    <a href="javascript:">1</a>
+    <a href="javascript:">2</a>
+    <a href="javascript:">3</a>
     <script>
-        // 第一题
-        let textarea = document.querySelector('textarea');
-
-        // 第二题
-        textarea.setAttribute('rows', 5);
-        textarea.rows = 5;
-
-        // 第三题
-        let { height, lineHeight, paddingTop, paddingBottom } = window.getComputedStyle(textarea);
-        // let height = document.defaultView.getComputedStyle(textarea, null)['height'];
-        // let lineHeight = parseFloat(document.defaultView.getComputedStyle(textarea, null)['line-height'])
-
-        // 第四题
-        textarea.style.height = textarea.rows * lineHeight + 'px';
-
-        //第五题
-        document.addEventListener('DOMNodeInserted', function (event) {
-            let textarea = event.target;
-            let lineHeight = parseFloat(document.defaultView.getComputedStyle(textarea, null)['line-height']);
-            textarea.style.height = lineHeight * textarea.rows + 'px';
+        Array.from(links).forEach(link => {
+            if (/^javascript:/.test(link.href)) {
+                link.setAttribute('role', 'button');
+            } else if (link.host !== location.host) {
+                console.log(link.host)
+                link.target = "_blank";
+                //题目中说的是包含,所以原有的不能覆盖掉,只能是添加
+                link.relList.add('external', 'nofollow', 'noopener');
+                //题目中说的是href以#开头的,所以 当前host# 这种格式的也不符合要求
+            } else if (/^#/.test(link.getAttribute('href'))) {
+                //题目中说的是设置为,所以直接覆盖原有的值
+                link.rel = 'internal';
+            }
         });
     </script>
 </body>

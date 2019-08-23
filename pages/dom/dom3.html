@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>dom 基础测试29</title>
+</head>
+
+<body>
+    <script>
+        Element.prototype.closestAll = function (selector) {
+            var el = this
+            var nodelist
+            // 参数校验
+            if (typeof selector !== 'string' || !selector.trim()) {
+                throw Error('\' + selector + \' is not a valid selector')
+            }
+            nodelist = document.querySelectorAll(selector)
+            // 使用 ES5 的 filter 过滤出包含 el 的元素
+            return Array.prototype.slice.call(nodelist)
+                .filter(function (node) {
+                    return node.contains(el)
+                })
+                // 反转数组，最近的排前面，依次从近到远
+                .reverse()
+        }
+        var el = document.getElementById('test')
+        var closestElement = el.closest('.i-questions')
+        console.log(closestElement)
+        var closestElementAll = el.closestAll('div')
+        console.log(closestElementAll)
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>dom 基础测试31</title>
+</head>
+
+<body>
+    <script>
+        console.log(document["styleSheets"][1].type) // text/css
+
+        document["head"]["innerText"].replace(/\s/g, '') //DOM 小测 31 :root{}
+
+        document.querySelector("div:nth-of-type(1)").id //hr
+
+        document.querySelector("div:empty").className
+
+        pageStart.querySelectorAll("div div").length //3
+
+        pageStart.querySelectorAll(":scope div div").length //1
+
+        document.querySelectorAll("div[class~='page']").length //1
+        document.querySelectorAll("div[class|='page']").length //1
+        document.querySelectorAll("div:not([class])").length //1
+    </script>
+</body>
+
+</html>

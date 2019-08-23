@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>js 基础测试31</title>
+</head>
+
+<body>
+    <script>
+        let methods = {
+            getType(obj) {
+                return Object.prototype.toString.call(obj).replace(/\[object (\w+)\]/, "$1")
+            },
+            equalObject(obj1, obj2, cb) {
+                var aProps = Object.getOwnPropertyNames(obj1);
+                var bProps = Object.getOwnPropertyNames(obj2);
+                if (aProps.length !== bProps.length) {
+                    return false;
+                }
+                return aProps.every(function (props) {
+                    if (cb) {
+                        return cb(props);
+                    }
+                    // 反正{} {} 是不相等的
+                    return obj1[props] === obj2[props]
+                })
+            },
+            equalArray(arr1, arr2, cb) {
+                if (arr1.length != arr2.length) {
+                    return false;
+                }
+                return arr1.every(function (el, i) {
+                    if (cb) {
+                        return cb(i);
+                    }
+                    return el === arr2[i]
+                })
+            },
+            equal(a, b) {
+                var typeA = getType(a);
+                var typeB = getType(b);
+                if (typeA !== typeB) {
+                    return false;
+                }
+                if (typeA === 'Array') {
+                    return this.equalArray(a, b, function (index) {
+                        return equal(a[index], b[index]);
+                    })
+                } else if (typeA === 'Object') {
+                    return this.equalObject(a, b, function (props) {
+                        return equal(a[props], b[props]);
+                    })
+                } else {
+                    return a === b;
+                }
+            }
+        }
+        methods.equalObject({"a":1,"b":2}, {"a":1,"b":2,"c":3})
+    </script>
+</body>
+
+</html>

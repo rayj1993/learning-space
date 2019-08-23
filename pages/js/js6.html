@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>js 基础测试34</title>
+</head>
+
+<body>
+    <script>
+        // 第一题 如何获取文档完整的cookie
+        console.log(document.cookie)
+        // 新增userid=1
+        document.cookie = 'userid=1'
+        console.log(document.cookie)
+        // 设置时间过期为一天
+        var expires = 24 * 36e5; // 过期时间：1 天
+        // document.cookie = 'userid=1; expires=' + (new Date((+new Date(time)) + expires)).toUTCString();
+        var exp = new Date();
+        exp.setTime(exp.getTime() + 24 * 60 * 60 * 1000); //过期时间 2分钟 1000为1秒 1秒*60就是1分钟 
+        ';expires=' + exp.toGMTString();
+        var date = new Date();
+
+        var expireDays = 11;
+        //将date设置为10天以后的时间
+
+        date.setTime(date.getTime() + expireDays * 60 * 1000);
+        document.cookie = "id=77; name=bill; expires=" + date.toUTCString();
+
+        //将id和name两个cookie设置为10天后过期
+        function getCookieValue(name) {
+            var strCookie = document.cookie;
+            var arrCookie = strCookie.split(';');
+            for (var i = 0; i < arrCookie.length; i++) {
+                var c = arrCookie[0].split('=');
+                if (c[0] == name) {
+                    return c[1];
+                }
+            }
+            return '';
+        }
+        getCookieValue('_csrfToken');
+        var date = new Date();
+
+        date.setTime(date.getTime() - 1000)
+
+        document.cookie = "ywkey=''; expires=" + date.toUTCString();
+        window.localStorage.userid = 1;
+        var expires = 24 * 36e5 * 7; // 过期时间：7 天
+
+        // 存储时加个时间戳
+        localStorage.setItem('userid', JSON.stringify({
+            data: 1,
+            stamp: Date.now() + expires
+        }));
+
+        // 取值时进行判断
+        var store_userid = JSON.parse(localStorage.getItem('userid'));
+        var uidStamp = store_userid.stamp;
+        var userid;
+        // 过期
+        if (uidStamp <= Date.now()) {
+            localStorage.removeItem('userid');
+        } else {
+            userid = store_userid.data;
+        }
+    </script>
+</body>
+
+</html>

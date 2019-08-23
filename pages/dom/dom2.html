@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>dom 基础测试28</title>
+</head>
+
+<body>
+    <div id="container" class="container">
+        <section>
+            <img src="../../assets/img//mm.jpg" alt="外层图片" />
+            <p>
+                <img src="../../assets/img/mm1.jpg" alt="示意图1" />
+                <img src="../../assets/img/mm2.jpg" alt="示意图2" />
+                <img id="compareImg" src="../../assets/img/mm3.jpg" alt="示意图3" />
+                <img src="../../assets/img/mm4.jpg" alt="示意图4" />
+                <img src="../../assets/img/mm5.jpg" alt="示意图5" />
+            </p>
+        </section>
+    </div>
+    <script>
+        const container = document.getElementById('container')
+        const compareImg = document.getElementById('compareImg')
+        document.addEventListener('click', function (e) {
+            const {
+                target
+            } = e
+            // 第一题
+            if (container.contains(target)) {
+                console.log('1. 点击元素是#container 的子元素')
+            }
+            // 第二题
+            if (target.nodeName === 'IMG') {
+                console.log('2. 点击元素是img 元素')
+            }
+            // 第三题
+            if (target.nodeName === 'IMG' && container.contains(target)) {
+                target.style.outline = '2px solid'
+            } else {
+                document.querySelectorAll('img').forEach(e => {
+                    e.style.outline = 'none'
+                })
+            }
+            // 第四题
+            let color = ''
+            if (compareImg.parentNode.contains(target)) {
+                // 判断前后关系
+                switch (compareImg.compareDocumentPosition(target)) {
+                    case 0:
+                        break
+                    case 2:
+                        color = 'red'
+                        break
+                    case 4:
+                        color = 'green'
+                        break
+                }
+            } else {
+                color = 'blue'
+            }
+            target.style.outlineColor = color
+        })
+    </script>
+</body>
+
+</html>

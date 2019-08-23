@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>js 基础测试32</title>
+</head>
+
+<body>
+    <script>
+       function contentLength(str) {
+            console.log(str.length);
+            str = str.trim().replace(/\s+/g, ' ');
+            console.log(str.length)
+            str = str.trim().replace(/\s+/g, ' ').match(/[\x00-\xff]/g).length;
+            console.log(str)
+        }
+        let str =
+            '2018年12月4日 - 在使用vscode开发vue项目时,      严格检查让人有点烦恼,必然需要一款可以自动格式化的插件进行快速严格检查的格式化。vscode插件会推荐使用 vetur 插件才会...';
+        let str1 = '123as'
+        contentLength(str);
+
+        function link(content, maxLength) {
+            if (content && Object.prototype.toString.call(content) === '[object String]') {
+                content = content.trim();
+                content = content.replace(/https?:\/\/\S+/gi, '一二三四五六七八九十');
+                content = content.replace(/[\s\uFEFF\xA0\n\r]{2,}/g, '一');
+                let count = 0;
+                Array.prototype.forEach.call(content,
+                    function (item) {
+                        if (/[\x00-\xff]/.test(item)) {
+                            count += 1;
+                        }
+                    })
+                return ((content.length - count) + Math.ceil(count / 2)) > maxLength;
+            }
+        }
+        console.log(link(' \n\r abcd  测试https://www.baidu.com/s?ie=UTF-8&wd=1 测试 32 1', 140));
+    </script>
+</body>
+
+</html>

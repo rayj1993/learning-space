@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>js 基础测试35</title>
+</head>
+
+<body>
+    <script>
+        function __toFixed(val) {
+            console.log(this)
+            console.log(val)
+            const value = +this.toString();
+            const decimal_number = this.toString().replace(/\d*\./, '').length;
+            const denominator = 10 ** (decimal_number - val > 0 ? decimal_number - val : 0);
+            let current_value = Math.round(value * 10 ** decimal_number / denominator) * denominator / 10 **
+                decimal_number + '';
+            if (/\./.test(current_value)) {
+                const current_decimal_number = current_value.replace(/\d*\./, '').length;
+                if (current_decimal_number < val) {
+                    current_value += '0'.repeat(val - current_decimal_number);
+                }
+            } else if (val) {
+                current_value += '.' + '0'.repeat(val);
+            }
+            return current_value;
+        }
+        Number.prototype.toFixed = __toFixed;
+        String.prototype.toFixed = __toFixed;
+        console.log(0.6.toFixed(0));
+        console.log(1.6.toFixed(0));
+        console.log(0.035.toFixed(2));
+        console.log(0.045.toFixed(2));
+    </script>
+</body>
+
+</html>

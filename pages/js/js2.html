@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>js 基础测试30</title>
+</head>
+
+<body>
+    <script>
+        let arr = [1, 2, 3, 4, 5]
+        if (
+            begin > arr.length - 1 || end > arr.lengt - 1
+        ) {
+            return
+        }
+        let tem = null
+        tem = arr[begin]
+        arr[begin] = arr[end]
+        arr[end] = tem
+        console.log(this.arr)
+        // es6
+        [arr[begin], arr[end]] = [arr[end], arr[begin]]
+    </script>
+</body>
+
+</html>

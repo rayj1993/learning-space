@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>js 基础测试33</title>
+</head>
+
+<body>
+    <script>
+        var arr = [{
+            skin: 1
+        }, {
+            skin: 2
+        }, {
+            skin: 3
+        }, {
+            skin: 4
+        }, {
+            skin: 5
+        }, {
+            skin: 6
+        }, {
+            skin: 7
+        }, {
+            skin: 8
+        }, {
+            skin: 9
+        }, {
+            skin: 10
+        }]
+
+        var randArr = function (seed) {
+            // 变成数值
+            seed = seed.replace(/\D/g, function (matchs) {
+                return matchs.charCodeAt();
+            });
+            // 变成随机数值
+            var str = Math.sin(seed).toString().slice(3);
+            // 补全，万一数组长度很长
+            var arrStr = str.padStart(arr.length, str).split('');
+            // 随机
+            return [...arr].map(function (obj, index) {
+                // 转换为数字
+                obj.rand = +arrStr[index];
+                return obj;
+            }).sort(function (objA, objB) {
+                return objA.rand - objB.rand;
+            }).map(function (obj) {
+                // 5.移除 rand，还原数组本来面貌
+                delete obj.rand;
+                return obj;
+            });
+        };
+
+        console.dir(randArr('abc001'));
+        console.dir(randArr('abc001'));
+        console.dir(randArr('abc002'));
+        console.dir(randArr('abc003'));
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>dom 基础测试36</title>
+    <style>
+        textarea {
+            line-height: 20px;
+        }
+    </style>
+</head>
+
+<body>
+    <textarea></textarea>
+    <script>
+        // 第一题
+        let textarea = document.querySelector('textarea');
+
+        // 第二题
+        textarea.setAttribute('rows', 5);
+        textarea.rows = 5;
+
+        // 第三题
+        let { height, lineHeight, paddingTop, paddingBottom } = window.getComputedStyle(textarea);
+        // let height = document.defaultView.getComputedStyle(textarea, null)['height'];
+        // let lineHeight = parseFloat(document.defaultView.getComputedStyle(textarea, null)['line-height'])
+
+        // 第四题
+        textarea.style.height = textarea.rows * lineHeight + 'px';
+
+        //第五题
+        document.addEventListener('DOMNodeInserted', function (event) {
+            let textarea = event.target;
+            let lineHeight = parseFloat(document.defaultView.getComputedStyle(textarea, null)['line-height']);
+            textarea.style.height = lineHeight * textarea.rows + 'px';
+        });
+    </script>
+</body>
+
+</html>
