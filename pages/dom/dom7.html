@@ -6,47 +6,121 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>dom 基础测试33</title>
-    <style>
-        .color {
-            color: red;
-            background-color: blue;
-            animation: color 1s linear forwards;
-            /**控制动画时长和类型**/
-        }
-
-        @keyframes color {
-            to {
-                color: blue;
-                background-color: red;
-            }
-        }
-    </style>
 </head>
 
 <body>
+    <div style="margin: 10px">
+        <button onclick="run()">开始渐变</button>
+        <button onclick="reset()">重置</button>
+    </div>
     <script>
-        var div = document.createElement('div');
-        var color = document.getElementById('color');
-        div.style.width = '150px';
-        div.style.height = '300px';
-        div.style.background = 'linear-gradient(to right bottom, red, blue)';
-        document.body.appendChild(div);
-        var animationState = true;
-        color.addEventListener("animationstart", function () {
-            animationState = true;
-        })
-        color.addEventListener("animationend", function () {
-            animationState = false;
-        })
-        var draw = function () {
-            if (animationState) {
-                var style = window.getComputedStyle(color);
-                div.style.background = 'linear-gradient(to right bottom, ' + style.color + ', ' + style
-                    .backgroundColor + ')';
+        /*** 第 1 题 ***/
+        var box = document.createElement('div');
+        box.style.width = '150px';
+        box.style.height = '300px';
+        document.body.appendChild(box);
+
+        /*** 第 2 题 ***/
+        // 方法1：使用位置关键词
+        box.style.background = 'linear-gradient(to right bottom, red, blue)';
+
+        // 方法2：使用角度
+        // 由于是长方形，所以需要用三角函数算出颜色临界线夹角（矩形右上与左下角对角线）
+        // var angle = Math.atan(150 / 300) * 180 / Math.PI + 90;
+        // box.style.background = 'linear-gradient(' + angle + 'deg, red, blue)';
+
+        /*** 第 3 题 ***/
+        /*** 第 3 题 ***/
+        function TransColor(color1, color2, time, timingFn) {
+            timingFn = typeof timingFn === 'undefined' ? 'linear' : timingFn;
+            this.elm = document.createElement('i');
+            this.color1 = this.getRGB(color1);
+            this.color2 = this.getRGB(color2);
+            this.transferring = false;
+            this.done = false;
+
+            this.elm.style.position = 'absolute';
+            this.elm.style.top = '-99em';
+            this.elm.style.border = '1px solid';
+            this.reset();
+            this.elm.style.transition = ['border-color', time + 's', timingFn].join(' ');
+            document.body.appendChild(this.elm);
+        }
+
+        TransColor.prototype = {
+            constructor: TransColor,
+
+            /**
+             * 获取RGB颜色
+             * @param {string} color - 颜色关键词/HSL(A)/RGB(A)/HEX
+             * @return {string} rgb(a)颜色
+             */
+            getRGB: function (color) {
+                var result;
+                var elm = document.createElement('i');
+
+                elm.style.position = 'absolute';
+                elm.style.color = color;
+                document.body.appendChild(elm);
+                result = getComputedStyle(elm).color;
+                document.body.removeChild(elm);
+
+                return result;
+            },
+
+            reset: function () {
+                this.elm.style.borderColor = [this.color1, this.color2].join(' ');
+            },
+
+            getFrame: function () {
+                if (!this.transferring) {
+                    this.transferring = true;
+                    this.elm.offsetHeight;  // 触发重绘
+                    this.elm.style.borderColor = [this.color2, this.color1].join(' ');
+                }
+
+                var computedColor = getComputedStyle(this.elm).borderColor
+                    .match(/rgba*\(\d+(,\s*\d*\.*\d+){2,3}\)/gi);
+
+                this.done = computedColor[0] === this.color2;
+
+                if (this.done) {
+                    this.transferring = false;
+                    this.reset();
+                }
+
+                return {
+                    color1: computedColor[0],
+                    color2: computedColor[1],
+                    done: this.done
+                }
             }
-            requestAnimationFrame(draw);
         };
-        draw();
+
+        var transColor = new TransColor('red', 'blue', 1);
+
+        function run() {
+            var render = function () {
+                var animate = transColor.getFrame();
+
+                box.style.background = 'linear-gradient(to right bottom, ' +
+                    animate.color1 + ', ' +
+                    animate.color2 + ')';
+
+                if (animate.done) {
+                    return;
+                }
+
+                requestAnimationFrame(render);
+            };
+
+            render();
+        }
+
+        function reset() {
+            transColor.reset();
+            box.style.background = 'linear-gradient(to right bottom, red, blue)';
+        }
     </script>
 </body>
 

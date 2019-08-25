@@ -6,18 +6,39 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>dom 基础测试34</title>
+    <style>
+        a::after {
+            content: attr(href)
+        }
+    </style>
 </head>
 
 <body>
-    <a href="javascript:">1</a>
-    <a href="javascript:">2</a>
-    <a href="javascript:">3</a>
+    <a>nohref</a>
+    <a href>href</a>
+    <a href="">href=""</a>
+    <a href="javascript:"></a>
+    <a href="test1.html"></a>
+    <a href="https://www.baidu.com"></a>
+    <a href="#aaa" rel="hehe"></a>
+    <a href="https://www.baidu.com#bbb"></a>
+    <map name="map">
+        <area shape="circle" coords="100,100,100" href="https://www.baidu.com/" />
+    </map>
+    <img usemap="#map"
+        src="data:image/svg+xml,%3Csvg  version='1.1' xmlns='http://www.w3.org/2000/svg' width='200' height='200' viewBox='0 0 200 200'%3E%3Ccircle cx='100' cy='100' r='100' fill='lightblue'/%3E%3C/svg%3E" />
     <script>
+        //所有的a标签
+        const anchors = document.querySelectorAll('a');
+        console.log(anchors);
+        //所有的链接元素
+        const links = document.links;
+        console.log(document.links);
+        //3
         Array.from(links).forEach(link => {
             if (/^javascript:/.test(link.href)) {
                 link.setAttribute('role', 'button');
             } else if (link.host !== location.host) {
-                console.log(link.host)
                 link.target = "_blank";
                 //题目中说的是包含,所以原有的不能覆盖掉,只能是添加
                 link.relList.add('external', 'nofollow', 'noopener');

@@ -98,7 +98,7 @@
             right: -40px;
             z-index: 3;
             overflow: hidden;
-            transition: left .5s, opacity .5s, background-color .5s;
+            transition: left .15s, opacity .15s, background-color .15s;
             opacity: 0;
             text-align: center;
         }
@@ -179,9 +179,20 @@
             background-color: #ccc;
         }
 
-        .i-operate-btn:hover {}
+        .i-question-image {
+            position: fixed;
+            right: 49px;
+            display: none;
+        }
 
-        .icon-photo:hover {}
+        .i-question-image img {
+            max-height: 100%;
+        }
+
+
+        .icon-photo:hover~.i-question-image {
+            display: block;
+        }
     </style>
 </head>
 
@@ -209,14 +220,15 @@
         <div id="j-operate">
             <div class="i-operate-btn">
                 <css-icon class="icon-photo"></css-icon>
+                <div class="i-question-image">
+                    <img id="j-question-image" src="images/css/css1.png">
+                </div>
             </div>
             <div class="i-operate-btn">
                 <css-icon class="icon-info"></css-icon>
             </div>
         </div>
-        <div id="j-question-image">
-            <img src="images/css/css1.jpg">
-        </div>
+
     </div>
     <script src="plugins/codemirror/lib/codemirror.js"></script>
     <!--javascript代码高亮-->
@@ -270,9 +282,32 @@
             xmlhttp.open('GET', url, true);
             xmlhttp.send();
         }
-        // 第一次初始化
-        loadXMLDoc('pages/css/css1.html');
+        function getQueryStringArgs() {
+            let qs = (location.search.length > 0 ? location.search.substring(1) : ""),
+                args = {},
+                items = qs.length ? qs.split('&') : [],
+                item = null,
+                name = null,
+                value = null,
+                i = 0,
+                len = items.length;
 
+            for (i = 0; i < len; i++) {
+                item = items[i].split('=');
+                name = decodeURIComponent(item[0]);
+                value = decodeURIComponent(item[1]);
+                if (name.length) {
+                    args[name] = value;
+                }
+            }
+            return args;
+        };
+        console.log(getQueryStringArgs().url);
+        let url = getQueryStringArgs().url ? getQueryStringArgs().url : 'css1';
+        console.log(url)
+        // 第一次初始化
+        loadXMLDoc('pages/' + url.replace(/[0-9]+/g, '') + '/' + url + '.html');
+        // 
         let unit = {
             css: [
                 '左右对称布局',
@@ -314,10 +349,12 @@
 
         let activeBtn = null;
         let frame = document.getElementById('j-frame');
+        frame.src = 'pages/' + url.replace(/[0-9]+/g, '') + '/' + url + '.html'
         let questions = document.getElementById('j-questions');
         let cssBox = document.getElementById('j-css-box');
         let domBox = document.getElementById('j-dom-box');
         let jsBox = document.getElementById('j-js-box');
+        let jQuestionImage = document.getElementById('j-question-image');
         function createButtons(section, total) {
             // 默认遍历 key
             let fragment = document.createDocumentFragment();
@@ -327,12 +364,12 @@
                 button.className = 'ui-button'
                 button.setAttribute('data-url', section + (i + 1))
                 button.innerText = total[i];
-                if (i == 1 && !activeBtn) {
+                if (i == 0 && !activeBtn) {
                     activeBtn = button;
                     button.classList.add('active');
                     // 这个是刷新页面
                     // location.href='?css=1'
-                    // window.location = '?css=1'
+                    // location.search = '?css=1'
                 }
                 fragment.appendChild(button);
             }
@@ -348,24 +385,29 @@
                     break;
                 default:
             }
-            // 讲内容放入
-
-            document.addEventListener('click', function (event, index) {
-                let element = event.target;
-                if (element.className.includes('ui-button') && element.nodeName == 'BUTTON') {
-                    activeBtn.className = 'ui-button';
-                    element.classList.add('active');
-                    activeBtn = element;
-                    // 获取数据，
-                    console.log(1);
-                    loadXMLDoc('pages/' + element.getAttribute('data-url').replace(/[0-9]+/g, '') + '/' + element.getAttribute('data-url') + '.html');
-                    frame.src = 'pages/' + element.getAttribute('data-url').replace(/[0-9]+/g, '') + '/' + element.getAttribute('data-url') + '.html';
-                } else if (element.nodeName == 'DIV' && element.className.includes('ui-button')) {
-
-                }
-            });
+            // 因为执行了三次，所以绑定了三次
         }
 
+        // 为按钮们绑定事件
+        document.addEventListener('click', function (event, index) {
+            let element = event.target;
+            if (element.className.includes('ui-button') && element.nodeName == 'BUTTON') {
+                activeBtn.className = 'ui-button';
+                element.classList.add('active');
+                activeBtn = element;
+                // 移除数字
+                let url = element.getAttribute('data-url');
+                // 获取数据，
+                loadXMLDoc('pages/' + url.replace(/[0-9]+/g, '') + '/' + url + '.html');
+                frame.src = 'pages/' + url.replace(/[0-9]+/g, '') + '/' + url + '.html';
+                // 改变图片的地址
+                jQuestionImage.setAttribute('src', 'images/' + url.replace(/[0-9]+/g, '') + '/' + url + '.png');
+                // 改变url地址
+                history.pushState('', '', 'index.html?url=' + url);
+            } else if (element.nodeName == 'DIV' && element.className.includes('ui-button')) {
+
+            }
+        });
         for (let i in unit) {
             createButtons(i, unit[i])
         }

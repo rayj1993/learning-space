@@ -6,6 +6,25 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>dom 基础测试32</title>
+    <style>
+        .box {
+            display: inline-block;
+            width: 100px;
+            height: 100px;
+            margin: 10px;
+            background-color: gray;
+        }
+
+        .box.active {
+            background-color: skyblue;
+        }
+
+        .box:hover:active {
+            opacity: 0.99;
+            /* 通过css过渡设置延时 */
+            transition: opacity .1s;
+        }
+    </style>
 </head>
 
 <body>
@@ -19,8 +38,7 @@
             fragment.appendChild(box)
         }
 
-        let box = document.getElementById('box')
-        box.appendChild(fragment)
+        document.body.appendChild(fragment)
 
         document.addEventListener('transitionend', longClick)
         document.addEventListener('mouseup', handleUp)

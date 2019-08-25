@@ -6,6 +6,45 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>dom 基础测试30</title>
+    <style>
+        .slider {
+            padding: 5px 0;
+            position: relative;
+            margin: 30px 10%;
+            --percent: 0;
+        }
+
+        .slider-track {
+            display: block;
+            width: 100%;
+            height: 6px;
+            background-color: lightgray;
+            border: 0;
+            padding: 0;
+        }
+
+        .slider-track::before {
+            content: "";
+            display: block;
+            height: 100%;
+            background-color: skyblue;
+            width: calc(1% * var(--percent));
+        }
+
+        .slider-thumb {
+            position: absolute;
+            width: 16px;
+            height: 16px;
+            border: 0;
+            padding: 0;
+            background: #fff;
+            box-shadow: 0 0 0 1px skyblue;
+            border-radius: 50%;
+            left: calc(1% * var(--percent));
+            top: 0;
+            margin: auto -8px;
+        }
+    </style>
 </head>
 
 <body>
