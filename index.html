@@ -244,6 +244,52 @@
     <script src="plugins/codemirror/addon/fold/brace-fold.js"></script>
     <script src="plugins/codemirror/addon/fold/comment-fold.js"></script>
     <script>
+        let activeBtn = null;
+        let frame = document.getElementById('j-frame');
+        let questions = document.getElementById('j-questions');
+        let cssBox = document.getElementById('j-css-box');
+        let domBox = document.getElementById('j-dom-box');
+        let jsBox = document.getElementById('j-js-box');
+        let jQuestionImage = document.getElementById('j-question-image');
+        let unit = {
+            css: [
+                '左右对称布局',
+                'tooltip',
+                'login',
+                'chatroom',
+                'grid',
+                'player',
+                '上下布局',
+                '等宽布局',
+                '左中右',
+                'navbar'
+            ],
+            dom: [
+                'backtop',
+                'domSelect',
+                'closestAll',
+                'slider',
+                'querySelectorAll',
+                'longclick',
+                'linear-gradient',
+                'getAttribute',
+                'loginform',
+                'textarea'
+            ],
+            js: [
+                'regex规则表达式',
+                '数组位置调换',
+                'equal',
+                'content长度规则表达式',
+                '种子随机数',
+                'cookie',
+                '__toFixed',
+                '数组操作',
+                'encodeURI',
+                'XMLHttpRequest'
+            ]
+        };
+
         // 初始化textarea
         var editor = CodeMirror.fromTextArea(document.getElementById('code'), {
             //实现javascript代码高亮
@@ -302,59 +348,15 @@
             }
             return args;
         };
-        console.log(getQueryStringArgs().url);
+        // 还要记录上次选中的状态
         let url = getQueryStringArgs().url ? getQueryStringArgs().url : 'css1';
-        console.log(url)
         // 第一次初始化
         loadXMLDoc('pages/' + url.replace(/[0-9]+/g, '') + '/' + url + '.html');
-        // 
-        let unit = {
-            css: [
-                '左右对称布局',
-                'tooltip',
-                'login',
-                'chatroom',
-                'grid',
-                'player',
-                '上下布局',
-                '等宽布局',
-                '左中右',
-                'navbar'
-            ],
-            dom: [
-                'backtop',
-                'domSelect',
-                'closestAll',
-                'slider',
-                'querySelectorAll',
-                'longclick',
-                'linear-gradient',
-                'getAttribute',
-                'loginform',
-                'textarea'
-            ],
-            js: [
-                'regex规则表达式',
-                '数组位置调换',
-                'equal',
-                'content长度规则表达式',
-                '种子随机数',
-                'cookie',
-                '__toFixed',
-                '数组操作',
-                'encodeURI',
-                'XMLHttpRequest'
-            ]
-        }
-
-        let activeBtn = null;
-        let frame = document.getElementById('j-frame');
+        // 初始image
+        jQuestionImage.setAttribute('src', 'images/' + url.replace(/[0-9]+/g, '') + '/' + url + '.png');
+        // 初始化frame
         frame.src = 'pages/' + url.replace(/[0-9]+/g, '') + '/' + url + '.html'
-        let questions = document.getElementById('j-questions');
-        let cssBox = document.getElementById('j-css-box');
-        let domBox = document.getElementById('j-dom-box');
-        let jsBox = document.getElementById('j-js-box');
-        let jQuestionImage = document.getElementById('j-question-image');
+
         function createButtons(section, total) {
             // 默认遍历 key
             let fragment = document.createDocumentFragment();
@@ -387,7 +389,9 @@
             }
             // 因为执行了三次，所以绑定了三次
         }
-
+        for (let i in unit) {
+            createButtons(i, unit[i])
+        }
         // 为按钮们绑定事件
         document.addEventListener('click', function (event, index) {
             let element = event.target;
@@ -408,12 +412,8 @@
 
             }
         });
-        for (let i in unit) {
-            createButtons(i, unit[i])
-        }
 
         // 为列表添加点击事件
-
         let menuList = document.getElementById('j-menu-list');
         let menuListActive = menuList.childNodes[1]
         menuList.addEventListener('click', function (event) {
@@ -441,7 +441,6 @@
             }
         });
 
-        // 还要记录上次选中的状态
 
         // hover出现界面，点击界面之外地方，界面才会消失
         let menu = document.getElementById('j-menu');
