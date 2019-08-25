@@ -26,6 +26,8 @@
 
         .i-preview {
             left: 50%;
+            padding: 10px;
+            box-sizing: border-box;
         }
 
         iframe {
@@ -46,9 +48,10 @@
             transition: left .5s, opacity .5s, background-color .5s;
             opacity: 0;
             text-align: center;
+
         }
 
-        .i-menu:hover {
+        .i-menu.active {
             left: 0;
             opacity: 1;
             background: linear-gradient(45deg, #6cf, #f66);
@@ -68,23 +71,132 @@
             border-radius: 5px;
             cursor: pointer;
             margin: 10px;
+            opacity: 0;
         }
 
         .ui-button.active {
             background: linear-gradient(45deg, #f66, #6cf);
         }
+
+        .i-menu.active .ui-button {
+            opacity: 1;
+        }
+
+        .i-questions>div {
+            display: none
+        }
+
+        .i-questions>div.active {
+            display: block;
+        }
+
+        .i-menu-right {
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            width: 49px;
+            right: -40px;
+            z-index: 3;
+            overflow: hidden;
+            transition: left .5s, opacity .5s, background-color .5s;
+            opacity: 0;
+            text-align: center;
+        }
+
+        .i-menu-right:hover {
+            right: 0;
+            background-color: #fff;
+            opacity: 1;
+        }
+
+        css-icon {
+            display: inline-block;
+            height: 1em;
+            width: 1em;
+            font-size: 30px;
+            box-sizing: border-box;
+            text-indent: -9999px;
+            vertical-align: middle;
+            position: relative;
+        }
+
+        css-icon::before,
+        css-icon::after {
+            content: '';
+            box-sizing: inherit;
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            -ms-transform: translate(-50%, -50%);
+            transform: translate(-50%, -50%);
+        }
+
+        .icon-photo {
+            border: solid transparent;
+            border-width: .1em .05em;
+            box-shadow: inset 0 2px, inset 2px 0, inset -2px 0, inset 0 -2px;
+            border-radius: .2em;
+        }
+
+        .icon-photo::before {
+            width: .3em;
+            height: .3em;
+            border: 2px solid;
+            border-radius: 50%;
+            left: 35%;
+            top: 35%;
+        }
+
+        .icon-photo::after {
+            width: .5em;
+            height: .5em;
+            border-style: solid;
+            border-width: 2px 2px 0 0;
+            left: 60%;
+            -ms-transform: translate(-45%, 20%) rotate(-45deg);
+            transform: translate(-45%, 20%) rotate(-45deg);
+        }
+
+        .icon-info::before {
+            width: .9em;
+            height: .9em;
+            border: 2px solid;
+            border-radius: 50%;
+        }
+
+        .icon-info::after {
+            width: 2px;
+            height: .5em;
+            border-top: .3em solid;
+            border-bottom: .1em solid;
+        }
+
+        .i-operate-btn {
+            padding: 10px 0;
+        }
+
+        .i-operate-btn:hover {
+            background-color: #ccc;
+        }
+
+        .i-operate-btn:hover {}
+
+        .icon-photo:hover {}
     </style>
 </head>
 
 <body>
     <div class="i-menu" id="j-menu">
         <h5>Wisdom in the mind is better than money in the hand.</h5>
-        <div>
+        <div id="j-menu-list">
             <div class="ui-button active">css</div>
             <div class="ui-button">dom</div>
             <div class="ui-button">js</div>
         </div>
-        <div id="questions">
+        <div class="i-questions" id="j-questions">
+            <div class="active" id="j-css-box"></div>
+            <div id="j-dom-box"></div>
+            <div id="j-js-box"></div>
         </div>
     </div>
     <div class="i-code">
@@ -92,6 +204,19 @@
     </div>
     <div class="i-preview">
         <iframe id="j-frame" src="pages/css/css1.html"></iframe>
+    </div>
+    <div class="i-menu-right" id="j-menu-right">
+        <div id="j-operate">
+            <div class="i-operate-btn">
+                <css-icon class="icon-photo"></css-icon>
+            </div>
+            <div class="i-operate-btn">
+                <css-icon class="icon-info"></css-icon>
+            </div>
+        </div>
+        <div id="j-question-image">
+            <img src="images/css/css1.jpg">
+        </div>
     </div>
     <script src="plugins/codemirror/lib/codemirror.js"></script>
     <!--javascript代码高亮-->
@@ -107,6 +232,7 @@
     <script src="plugins/codemirror/addon/fold/brace-fold.js"></script>
     <script src="plugins/codemirror/addon/fold/comment-fold.js"></script>
     <script>
+        // 初始化textarea
         var editor = CodeMirror.fromTextArea(document.getElementById('code'), {
             //实现javascript代码高亮
             mode: 'application/x-ejs',
@@ -147,39 +273,148 @@
         // 第一次初始化
         loadXMLDoc('pages/css/css1.html');
 
-        let [css, dom, js] = [10, 8, 9];
+        let unit = {
+            css: [
+                '左右对称布局',
+                'tooltip',
+                'login',
+                'chatroom',
+                'grid',
+                'player',
+                '上下布局',
+                '等宽布局',
+                '左中右',
+                'navbar'
+            ],
+            dom: [
+                'backtop',
+                'domSelect',
+                'closestAll',
+                'slider',
+                'querySelectorAll',
+                'longclick',
+                'linear-gradient',
+                'getAttribute',
+                'loginform',
+                'textarea'
+            ],
+            js: [
+                'regex规则表达式',
+                '数组位置调换',
+                'equal',
+                'content长度规则表达式',
+                '种子随机数',
+                'cookie',
+                '__toFixed',
+                '数组操作',
+                'encodeURI',
+                'XMLHttpRequest'
+            ]
+        }
+
         let activeBtn = null;
         let frame = document.getElementById('j-frame');
-        // 默认遍历css
-        let fragment = document.createDocumentFragment();
-        for (let i = 1; i < css + 1; i++) {
-            let button = document.createElement('button')
-            button.type = 'button'
-            button.className = 'ui-button'
-            button.innerText = 'css' + i;
-            if (i == 1) {
-                activeBtn = button;
-                button.classList.add('active');
+        let questions = document.getElementById('j-questions');
+        let cssBox = document.getElementById('j-css-box');
+        let domBox = document.getElementById('j-dom-box');
+        let jsBox = document.getElementById('j-js-box');
+        function createButtons(section, total) {
+            // 默认遍历 key
+            let fragment = document.createDocumentFragment();
+            for (let i = 0; i < total.length; i++) {
+                let button = document.createElement('button')
+                button.type = 'button'
+                button.className = 'ui-button'
+                button.setAttribute('data-url', section + (i + 1))
+                button.innerText = total[i];
+                if (i == 1 && !activeBtn) {
+                    activeBtn = button;
+                    button.classList.add('active');
+                    // 这个是刷新页面
+                    // location.href='?css=1'
+                    // window.location = '?css=1'
+                }
+                fragment.appendChild(button);
             }
-            fragment.appendChild(button);
+            switch (section) {
+                case 'css':
+                    cssBox.appendChild(fragment)
+                    break;
+                case 'dom':
+                    domBox.appendChild(fragment)
+                    break;
+                case 'js':
+                    jsBox.appendChild(fragment)
+                    break;
+                default:
+            }
+            // 讲内容放入
+
+            document.addEventListener('click', function (event, index) {
+                let element = event.target;
+                if (element.className.includes('ui-button') && element.nodeName == 'BUTTON') {
+                    activeBtn.className = 'ui-button';
+                    element.classList.add('active');
+                    activeBtn = element;
+                    // 获取数据，
+                    console.log(1);
+                    loadXMLDoc('pages/' + element.getAttribute('data-url').replace(/[0-9]+/g, '') + '/' + element.getAttribute('data-url') + '.html');
+                    frame.src = 'pages/' + element.getAttribute('data-url').replace(/[0-9]+/g, '') + '/' + element.getAttribute('data-url') + '.html';
+                } else if (element.nodeName == 'DIV' && element.className.includes('ui-button')) {
+
+                }
+            });
         }
-        questions.appendChild(fragment)
 
-        document.addEventListener('click', function (event, index) {
+        for (let i in unit) {
+            createButtons(i, unit[i])
+        }
+
+        // 为列表添加点击事件
+
+        let menuList = document.getElementById('j-menu-list');
+        let menuListActive = menuList.childNodes[1]
+        menuList.addEventListener('click', function (event) {
             let element = event.target;
-            console.log(event);
-            if (element.className.includes('ui-button') && element.nodeName == 'BUTTON') {
-                activeBtn.className = 'ui-button';
+            // 需要一处
+            if (element.className.includes('ui-button')) {
                 element.classList.add('active');
-                activeBtn = element;
-                loadXMLDoc('pages/css/' + element.innerText + '.html');
-                frame.src = 'pages/css/' + element.innerText + '.html';
-            } else if (element.nodeName == 'DIV' && element.className.includes('ui-button')) {
-
+                menuListActive.classList.remove('active');
+                menuListActive = element;
+                cssBox.style.display = 'none';
+                domBox.style.display = 'none';
+                jsBox.style.display = 'none';
+                switch (element.innerText) {
+                    case 'css':
+                        cssBox.style.display = 'block';
+                        break;
+                    case 'dom':
+                        domBox.style.display = 'block';
+                        break;
+                    case 'js':
+                        jsBox.style.display = 'block';
+                        break;
+                    default:
+                }
             }
         });
 
         // 还要记录上次选中的状态
+
+        // hover出现界面，点击界面之外地方，界面才会消失
+        let menu = document.getElementById('j-menu');
+        menu.addEventListener('mouseenter', function (event) {
+            event.target.classList.add('active');
+        });
+
+        document.body.addEventListener('click', function (event) {
+            if (event.target.closest('#j-menu')) {
+                // console.log(event.target.closest('#j-menu'))
+            } else {
+                menu.classList.remove('active');
+            }
+        });
+
     </script>
 </body>
 
