@@ -10,8 +10,45 @@
 
 <body>
 
+    <form id="loginForm" action="/account/login" method="post" onsubmit="return false">
+        <p>账号：<input name="username" required></p>
+        <p>密码：<input name="password" name="password" required></p>
+        <p>账号：<input type="submit" value="登陆"></p>
+    </form>
+    <!-- ie10+ 第五题 -->
+    <input name="from" type="hidden" form="loginForm">
+
     <script>
-      
+        // 第一题
+        let loginForm = document.forms[0];
+        // let form = document.forms.loginForm;
+        console.log(loginForm.childNodes)
+        // 第二题 
+        // loginForm.onsubmit = function(){
+        //     return false;
+        // }
+        // loginForm.onsubmit = function(e){
+        //     e.preventDefault();
+        // }
+
+        loginForm.addEventListener('submit', function (event) {
+            event.preventDefault();
+        })
+
+        // 第三题 ie10+
+        const formData = new FormData(formDom),
+            iterators = formData.entries(),
+            data = {};
+        for (const [key, value] of iterators) {
+            data[key] = value;
+        }
+
+        // 第四题
+
+        loginForm.querySelector('[type="submit"]').disabled = true;
+
+        // 第五题 直接写在页面中
+        
     </script>
 </body>
 
