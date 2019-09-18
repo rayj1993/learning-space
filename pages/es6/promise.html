@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <script src="https://apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js"></script>
+    <script>
+        //要活用这个promiseALL方法
+        function createPromise(url){
+            return new Promise((resolve,reject)=>{
+                $.ajax({
+                url,
+                dataType:"json",
+                success(arr){
+                    resolve(arr);
+                },
+                error(arr){
+                    reject(arr);
+                }
+                })
+            })
+        }
+        Promise.all([
+            createPromise('data/arr.txt'),
+            createPromise('data/arr.txt')
+        ]).then(function(arr){
+            let [json,arr] = arr;
+            console.log(json);
+            console.log(arr);
+        },function(){
+            alert('失败了！');
+        })
+    </script>
+</body>
+</html>

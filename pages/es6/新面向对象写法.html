@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        //类
+        class User{
+            constructor(name,age){
+                this.name = name;
+                this.age = age;
+            }
+            showName(){
+                alert(this.name);
+            }
+            showAge(){
+                alert(this.age);
+            }
+        }
+        var u = new User('w我我',18);
+        // u.showName();
+        // u.showAge();
+        //继承
+        class VipUser extends User{
+            constructor(name,age,level){
+                super(name,age);
+                this.level = level;
+            }
+            showLevel(){
+                alert(this.level);
+            }
+        }
+        let v = new VipUser('我',18,9999999);
+        v.showLevel();
+        v.showName();
+        // function User(name,age){
+        //     this.name = name;
+        //     this.age = age;
+        // }
+        // User.prototype.showName = function (){
+        //     alert(this.name);
+        // }
+        // User.prototype.showAge = function (){
+        //     alert(this.age);
+        // }
+        // var u = new User('w我我',18);
+        // // u.showName();
+        // // u.showAge();
+        // function VipUser(name,age,level){
+        //     User.call(this,name,age);
+        //     this.level = level;
+        // }
+        // VipUser.prototype = new User();
+        // VipUser.prototype.constructor = VipUser;
+        // VipUser.prototype.showLevel= function(){
+        //     alert(this.level);
+        // }
+        // var v = new VipUser('我',18,9999999);
+        // v.showLevel();
+    </script>
+</body>
+</html>

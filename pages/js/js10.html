@@ -52,9 +52,35 @@
             return promise(file);
         })
 
-        Promise.all(promises).then(function (values) {
+        Promise.allSettled(promises).then(function (values) {
             //console.log('all complete');
         });
+        /* 
+        //第二，三题
+            document.querySelector('input[type=file]').addEventListener('change',function (e) {
+            const files = Array.from(e.target.files).filter(item => {
+                return item.size/1024/1024 < 1
+            });
+                //整体思路就是用计算器来计算成功和失败等于文件总个数。
+                var len = files.length;
+                var i = 0;
+                files.forEach(item => {
+                    //
+                    const xhr = new XMLHttpRequest();
+                    xhr.onload = function(){
+                        i++;
+                    };
+                    xhr.onerror = function(){
+                        i++;
+                    };
+                    xhr.onloadend = function () {
+                        if(len === i){
+                            console.log("加载完毕")
+                        }
+                    }
+                });
+            },false);
+         */
     </script>
 </body>
 

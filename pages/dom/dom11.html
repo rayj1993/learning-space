@@ -12,9 +12,40 @@
 </head>
 
 <body>
+    <dialog opem style="z-index: 1"></dialog>
+    <dialog opem style="z-index: 2"></dialog>
+    <dialog opem style="z-index: 3"></dialog>
+    <dialog opem style="z-index: 4"></dialog>
     <script>
         let newDialog = document.createElement('dialog');
+        newDialog.innerText = 'dialog';
+        let btn = document.createElement('button');
+        btn.innerText = '关闭dialog'
+        // 第三题
+        btn.addEventListener('click', function () {
+            newDialog.removeAttribute('open');
+        });
+        newDialog.appendChild(btn);
+
+        // 第二题
+        // newDialog.setAttribute('open', '开启');
+        // 第一题
         document.body.appendChild(newDialog);
+        // 第四题
+        newDialog.showModal();
+        // 第五题
+        function setMax() {
+            let dialogs = document.querySelectorAll('dialog');
+            let largestIndex = 1;
+            Array.from(dialogs).forEach(dom => {
+                if (Number(dom.style.zIndex) > largestIndex) {
+                    largestIndex = Number(dom.style.zIndex)
+                };
+            });
+            dialogs[dialogs.length - 1].style.zIndex = largestIndex + 1
+
+        }
+        setMax()
     </script>
 </body>
 

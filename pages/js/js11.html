@@ -24,10 +24,11 @@
         let numberCodeArr = numberCodeReverse.match(/\d{1,3}/g);
         document.write(numberCodeArr.reverse().join(','));
         document.write('<br/>');
+        document.write(Number(numberCode).toLocaleString('en-US'));
 
         // 第三题 K,M,G
         let fileSize = 2837475;
-        var K = 1024;
+        let K = 1024;
         let size = '';
         if (fileSize >= K ** 3) {
             size = (fileSize / K ** 3).toFixed(2) + "G";
