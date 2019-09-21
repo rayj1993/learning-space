@@ -1,40 +1,42 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Document</title>
 </head>
+
 <body>
     <script>
         //类
-        class User{
-            constructor(name,age){
+        class User {
+            constructor(name, age) {
                 this.name = name;
                 this.age = age;
             }
-            showName(){
+            showName() {
                 alert(this.name);
             }
-            showAge(){
+            showAge() {
                 alert(this.age);
             }
         }
-        var u = new User('w我我',18);
+        var u = new User('w我我', 18);
         // u.showName();
         // u.showAge();
         //继承
-        class VipUser extends User{
-            constructor(name,age,level){
-                super(name,age);
+        class VipUser extends User {
+            constructor(name, age, level) {
+                super(name, age);
                 this.level = level;
             }
-            showLevel(){
+            showLevel() {
                 alert(this.level);
             }
         }
-        let v = new VipUser('我',18,9999999);
+        let v = new VipUser('我', 18, 9999999);
         v.showLevel();
         v.showName();
         // function User(name,age){
@@ -63,4 +65,5 @@
         // v.showLevel();
     </script>
 </body>
+
 </html>

@@ -11,98 +11,39 @@
             font-size: 12px;
         }
 
-        div {
-            position: relative;
-            display: inline-block;
+        .img {
+            width: 120px;
+            height: 160px;
         }
 
-        /* 第一题 */
-
-        span[type-one] {
+        .tag {
+            box-sizing: border-box;
             position: absolute;
-            background-color: red;
-            color: #fff;
-            width: 30px;
             text-align: center;
-        }
-
-        /* 第二题 */
-
-        span[type-two] {
-            position: absolute;
+            font-size: 12px;
             color: #fff;
-            z-index: 1;
-            text-indent: 4px;
+            min-width: 2em;
+            min-height: 2em;
+            padding: .3em .5em;
         }
 
-        span[type-two]::before {
-            content: '';
-            position: absolute;
-            width: 0;
-            height: 0;
-            border-width: 14px;
-            border-style: solid;
-            border-color: red transparent transparent red;
-            z-index: -1;
-            left: 0;
+        .tag[type="1"] {
+            background: #cd0000
         }
 
-        /* 第三题 */
-
-        span[type-three] {
-            position: absolute;
-            background-color: red;
-            color: #fff;
-            text-align: center;
+        .tag[type="2"] {
+            padding: .1em 1.2em .4em .2em;
+            background: linear-gradient(to top left, transparent 50%, #cd0000 0)
         }
 
-        span[type-three]::after {
-            content: '';
-            position: absolute;
-            width: 0;
-            height: 0;
-            border-width: 8px;
-            border-style: solid;
-            border-color: red transparent transparent red;
-            z-index: auto;
+        .tag[type="3"] {
+            padding-right: 1.5em;
+            background: linear-gradient(-60deg, transparent 1em, #cd0000 0)
         }
 
-        /* 第四题 */
-
-
-        span[type-four] {
-            position: absolute;
-            color: #fff;
-            z-index: 1;
-            padding-left: 2px;
-        }
-
-        span[type-four]::before {
-            content: '';
-            position: absolute;
-            width: 26px;
-            height: 26px;
-            border-radius: 0 0 100% 0;
-            background-color: red;
-            z-index: -1;
-            left: 0;
-        }
-
-        span[type-five] {
-            position: absolute;
-            color: #fff;
-            z-index: 1;
-        }
-
-        span[type-five]::before {
-            content: '';
-            position: absolute;
-            width: 35px;
-            height: 26px;
-            border-radius: 0 0 100% 0;
-            background-color: red;
-            z-index: -1;
-            left: 0;
+        .tag[type="4"] {
+            padding: .1em 1em .4em .2em;
+            background: radial-gradient(100% 100% ellipse at left top, #cd0000 100%, transparent 0)
         }
     </style>
 </head>
@@ -110,29 +51,28 @@
 <body>
     <h4>第一题</h4>
     <div>
-        <span class="tag" type-one>No.1</span>
-        <img src="https://bookcover.yuewen.com/qdbimg/349573/1012237441/180" class="img" type-one>
+        <span class="tag" type="1">No.1</span>
+        <img src="https://bookcover.yuewen.com/qdbimg/349573/1012237441/180" class="img">
     </div>
     <h4>第二题</h4>
     <div>
-        <span class="tag" type-two>1</span>
-        <img src="https://bookcover.yuewen.com/qdbimg/349573/1012237441/180" class="img" type-two>
+        <span class="tag" type="2">1</span>
+        <img src="https://bookcover.yuewen.com/qdbimg/349573/1012237441/180" class="img">
     </div>
     <h4>第三题</h4>
     <div>
-        <span class="tag" type-three>火热连载</span>
-        <img src="https://bookcover.yuewen.com/qdbimg/349573/1012237441/180" class="img" type-three>
+        <span class="tag" type="3">火热连载</span>
+        <img src="https://bookcover.yuewen.com/qdbimg/349573/1012237441/180" class="img">
     </div>
     <h4>第四题</h4>
     <div>
-        <span class="tag" type-four>1</span>
-        <img src="https://bookcover.yuewen.com/qdbimg/349573/1012237441/180" class="img" type-four>
+        <span class="tag" type="4">1</span>
+        <img src="https://bookcover.yuewen.com/qdbimg/349573/1012237441/180" class="img">
     </div>
     <div>
-        <span class="tag" type-five>100</span>
-        <img src="https://bookcover.yuewen.com/qdbimg/349573/1012237441/180" class="img" type-five>
+        <span class="tag" type="4">100</span>
+        <img src="https://bookcover.yuewen.com/qdbimg/349573/1012237441/180" class="img">
     </div>
 </body>
 
 </html>
-

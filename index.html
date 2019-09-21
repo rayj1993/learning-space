@@ -203,6 +203,8 @@
             <div class="ui-button active">css</div>
             <div class="ui-button">dom</div>
             <div class="ui-button">js</div>
+            <div class="ui-button">es5</div>
+            <div class="ui-button">es6</div>
         </div>
         <div class="i-questions" id="j-questions">
             <div class="active" id="j-css-box"></div>
@@ -230,14 +232,16 @@
         </div>
 
     </div>
+    <!-- 单元配置 -->
+    <script src="config.js"></script>
+    <!-- javascript代码高亮 -->
     <script src="plugins/codemirror/lib/codemirror.js"></script>
-    <!--javascript代码高亮-->
     <script src="plugins/codemirror/mode/xml/xml.js"></script>
     <script src="plugins/codemirror/mode/javascript/javascript.js"></script>
     <script src="plugins/codemirror/mode/css/css.js"></script>
     <script src="plugins/codemirror/mode/htmlmixed/htmlmixed.js"></script>
     <script src="plugins/codemirror/mode/htmlembedded/htmlembedded.js"></script>
-    <!--支持代码折叠-->
+    <!-- 支持代码折叠 -->
     <script src="plugins/codemirror/addon/mode/multiplex.js"></script>
     <script src="plugins/codemirror/addon/fold/foldcode.js"></script>
     <script src="plugins/codemirror/addon/fold/foldgutter.js"></script>
@@ -251,48 +255,7 @@
         let domBox = document.getElementById('j-dom-box');
         let jsBox = document.getElementById('j-js-box');
         let jQuestionImage = document.getElementById('j-question-image');
-        let unit = {
-            css: [
-                '左右对称布局',
-                'tooltip',
-                'login',
-                'chatroom',
-                'grid',
-                'player',
-                '上下布局',
-                '等宽布局',
-                '左中右',
-                'navbar',
-                'cell',
-                'absulute'
-            ],
-            dom: [
-                'backtop',
-                'domSelect',
-                'closestAll',
-                'slider',
-                'querySelectorAll',
-                'longclick',
-                'linear-gradient',
-                'getAttribute',
-                'loginform',
-                'textarea',
-                'dialog',
-            ],
-            js: [
-                'regex规则表达式',
-                '数组位置调换',
-                'equal',
-                'content长度规则表达式',
-                '种子随机数',
-                'cookie',
-                '__toFixed',
-                '数组操作',
-                'encodeURI',
-                'XMLHttpRequest',
-                '还是正则操作'
-            ]
-        };
+
 
         // 初始化textarea
         var editor = CodeMirror.fromTextArea(document.getElementById('code'), {
@@ -419,7 +382,7 @@
 
         // 为列表添加点击事件
         let menuList = document.getElementById('j-menu-list');
-        let menuListActive = menuList.childNodes[1]
+        let menuListActive = menuList.childNodes[1];
         menuList.addEventListener('click', function (event) {
             let element = event.target;
             // 需要一处
