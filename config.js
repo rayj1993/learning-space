@@ -1,6 +1,6 @@
 // 页面单元
 let unit = {
-    css: [
+    'css': [
         '左右对称布局',
         'tooltip',
         'login',
@@ -14,7 +14,7 @@ let unit = {
         'cell',
         'absulute'
     ],
-    dom: [
+    'dom': [
         'backtop',
         'domSelect',
         'closestAll',
@@ -27,7 +27,7 @@ let unit = {
         'textarea',
         'dialog',
     ],
-    js: [
+    'js': [
         'regex规则表达式',
         '数组位置调换',
         'equal',
@@ -40,10 +40,15 @@ let unit = {
         'XMLHttpRequest',
         '还是正则操作'
     ],
-    es5:[
-
+    'es5': [
+        'hello world'
     ],
-    es6:[
+    'es6': [
         'class'
     ]
 };
+
+// 笔记
+let note = {
+
+}
