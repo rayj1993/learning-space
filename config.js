@@ -41,10 +41,16 @@ let unit = {
         '还是正则操作'
     ],
     'es5': [
-        'hello world'
+        '数组的扩展',
+        '模板字面量',
+        '字符串的扩展'
     ],
     'es6': [
-        'class'
+        'class',
+        '变量的解构赋值',
+        'promise',
+        'Generator',
+        'es7-async',
     ]
 };
 

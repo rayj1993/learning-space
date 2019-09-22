@@ -1,12 +1,58 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>hello es5</title>
+    <title>数组扩展方法</title>
 </head>
+
 <body>
-    
+    <script>
+        //判断成绩功能
+        let score1 = [{
+                id: 1,
+                price: 123
+            },
+            {
+                id: 2,
+                price: 13212
+            },
+            {
+                id: 3,
+                price: 123
+            }
+        ];
+        // 反正就是要里面有个布尔值来判断是否要return 方法创建一个新数组, 其包含通过所提供函数实现的测试的所有元素
+        let result1 = score1.filter(item => item.price > 10000);
+        console.log(result1);
+
+
+        // 判断成绩功能
+        let score2 = [100, 20, 30, 40, 12, 99, 21];
+        score2.forEach((item, index) => {
+            console.log(item);
+        });
+
+
+        // 方法创建一个新数组，其结果是该数组中的每个元素都调用一个提供的函数后返回的结果。
+        let score3 = [100, 20, 30, 40, 12, 99, 21];
+        let result3 = score3.map(item => item > 60 ? '成功' : '失败');
+        console.log(result3);
+
+        let score4 = [100, 20, 30, 40, 12, 99, 21];
+        // 第一个参数是返回值，第二个参数是现在这个值 
+        // 方法对数组中的每个元素执行一个由您提供的reducer函数(升序执行)，将其结果汇总为单个返回值。
+        let result4 = score4.reduce((tem, item, index) => {
+            if (index != score4.length - 1) {
+                return tem + item;
+            } else {
+                return (tem + item) / score4.length;
+            }
+        });
+        console.log(result4);
+    </script>
 </body>
+
 </html>

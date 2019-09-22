@@ -137,6 +137,7 @@ window.onload = function () {
             jQuestionImage.setAttribute('src', 'images/' + unit + '/' + question + '.png');
             // 改变url地址
             history.pushState('', '', 'index.html?unit=' + unit + '&question=' + question);
+            console.log(document.domain)
         }
     });
 
