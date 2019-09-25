@@ -38,6 +38,7 @@ let unit = {
         '数组操作',
         'encodeURI',
         'XMLHttpRequest',
+        '还是正则操作',
         '还是正则操作'
     ],
     'es5': [
@@ -51,6 +52,9 @@ let unit = {
         'promise',
         'Generator',
         'es7-async',
+    ],
+    'vue':[
+        '申明式渲染'
     ]
 };
 
