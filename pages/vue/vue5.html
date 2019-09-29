@@ -9,13 +9,7 @@
 </head>
 
 <body>
-    <div id="example">
-        <span v-once>这个将不会改变: {{ msg }}</span>
-    </div>
-    <!--
-        注意，参数表达式的写法存在一些约束，如之后的“对动态参数表达式的约束”章节所述。
-    -->
-    <a v-bind:[attributeName]="url"> ... </a>
+    <div id="example"></div>
     <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
     <script>
         var data = {
@@ -23,9 +17,7 @@
         }
         var vm = new Vue({
             el: '#example',
-            data: data,
-            msg: 'msg123',
-            attributeName: 'href' //v-bind:href。
+            data: data
         })
 
         vm.$data === data // => true

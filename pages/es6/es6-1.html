@@ -17,10 +17,10 @@
                 this.age = age;
             }
             showName() {
-                alert(this.name);
+                console.log(this.name);
             }
             showAge() {
-                alert(this.age);
+                console.log(this.age);
             }
         }
         var u = new User('w我我', 18);
@@ -33,7 +33,7 @@
                 this.level = level;
             }
             showLevel() {
-                alert(this.level);
+                console.log(this.level);
             }
         }
         let v = new VipUser('我', 18, 9999999);
@@ -44,10 +44,10 @@
         //     this.age = age;
         // }
         // User.prototype.showName = function (){
-        //     alert(this.name);
+        //     console.log(this.name);
         // }
         // User.prototype.showAge = function (){
-        //     alert(this.age);
+        //     console.log(this.age);
         // }
         // var u = new User('w我我',18);
         // // u.showName();
@@ -59,7 +59,7 @@
         // VipUser.prototype = new User();
         // VipUser.prototype.constructor = VipUser;
         // VipUser.prototype.showLevel= function(){
-        //     alert(this.level);
+        //     console.log(this.level);
         // }
         // var v = new VipUser('我',18,9999999);
         // v.showLevel();

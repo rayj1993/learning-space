@@ -35,7 +35,9 @@ window.onload = function () {
             // console.log(element);
             let number = ++index;
             if (i.match(/\d/g)) {
-                str = '-'
+                str = '-';
+            }else{
+                str = '';
             };
             unitContentHtml.push(`<button class="ui-button" 
                             title="${element}" 

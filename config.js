@@ -53,9 +53,11 @@ let unit = {
         'Generator',
         'es7-async',
     ],
-    'vue':[
+    'vue': [
         '组件',
-        '实例'
+        'v-bind',
+        'computed，watch',
+        'Class 与 Style 绑定'
     ]
 };
 

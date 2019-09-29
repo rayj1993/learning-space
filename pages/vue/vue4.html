@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>vue</title>
+</head>
+
+<body>
+
+    <div id="example">
+        <!-- 数组语法 -->
+        <div :style="{ display: ['-webkit-box', '-ms-flexbox', 'flex'] }"></div>
+        <!-- 这样写只会渲染数组中最后一个被浏览器支持的值。在本例中，如果浏览器支持不带浏览器前缀的 flexbox，那么就只会渲染 display: flex。 -->
+        <div v-bind:style="[baseStyles, overridingStyles]"></div>
+        <!-- 对象语法 -->
+        <div v-bind:class="{ active: isActive }"></div>
+        <div class="static" v-bind:class="{ active: isActive, 'text-danger': hasError }"></div>
+        <div v-bind:class="classObject"></div>
+        <div v-bind:class="classObject1"></div>
+        <div v-bind:class="[activeClass, errorClass]"></div>
+        <!-- 条件表达式语法 -->
+        <div v-bind:class="[isActive ? activeClass : '', errorClass]"></div>
+        <!-- 数组对象语法 -->
+        <div v-bind:class="[{ active: isActive }, errorClass]"></div>
+        <!-- 对象语法 style -->
+        <div v-bind:style="{ color: activeColor, fontSize: fontSize + 'px' }"></div>
+        <div v-bind:style="styleObject"></div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <script>
+        var vm = new Vue({
+            el: '#example',
+            data: {
+                styleObject: {
+                    color: 'red',
+                    fontSize: '13px'
+                },
+                activeColor: 'red',
+                fontSize: 30,
+                activeClass: 'active',
+                errorClass: 'text-danger',
+                isActive: true,
+                hasError: false,
+                error: null,
+                classObject: {
+                    active: true,
+                    'text-danger': false
+                }
+            },
+            computed: {
+                classObject1: function () {
+                    return {
+                        active: this.isActive && !this.error,
+                        'text-danger': this.error && this.error.type === 'fatal'
+                    }
+                }
+            }
+        })
+    </script>
+</body>
+
+</html>
