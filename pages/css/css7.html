@@ -7,20 +7,30 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>css 基础测试7</title>
     <style>
+        html {
+            height: 100%;
+        }
+
+        body {
+            margin: 0;
+            height: 100%;
+        }
+
         .container {
             display: flex;
             flex-direction: column;
-            min-height: 100vh;
+            min-height: 100%;
         }
 
         footer {
-            background: pink;
             margin-top: auto;
         }
 
-        /* .container {
+        /* 
+        .container {
             display: table;
-            height: 100vh;
+            height: 100%;
+            width: 100%;
         }
 
         .footer {
@@ -29,7 +39,7 @@
 
         /* .container {
             display: table;
-            height: 100vh;
+            height: 100%;
         }
 
         .content {
@@ -40,12 +50,32 @@
             display: table-cell;
             vertical-align: bottom;
         } */
+        .footer {
+            background: pink;
+        }
     </style>
 </head>
 
 <body>
     <div class="container">
-        <div class="content">内容</div>
+        <div class="content">
+            <p>内容内容</p>
+            <p>内容内容</p>
+            <p>内容内容</p>
+            <p>内容内容</p>
+            <p>内容内容</p>
+            <p>内容内容</p>
+            <p>内容内容</p>
+            <p>内容内容</p>
+            <p>内容内容</p>
+            <p>内容内容</p>
+            <p>内容内容</p>
+            <p>内容内容</p>
+            <p>内容内容</p>
+            <p>内容内容</p>
+            <p>内容内容</p>
+            <p>内容内容</p>
+        </div>
         <footer class="footer">底部</footer>
     </div>
 </body>
