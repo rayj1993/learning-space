@@ -57,7 +57,9 @@ let unit = {
         '组件',
         'v-bind',
         'computed，watch',
-        'Class 与 Style 绑定'
+        'Class 与 Style 绑定',
+        '事件处理',
+        'v-module 表单输入'
     ]
 };
 

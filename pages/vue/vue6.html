@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>vue</title>
+</head>
+
+<body>
+    <div id="app">
+        <select v-model="selected">
+            <option v-for="option in options" v-bind:value="option.value">
+                {{ option.text }}
+            </option>
+        </select>
+        <span>Selected: {{ selected }}</span>
+        <input v-model.number="age" type="number">
+        <span>Selected: {{ age }}</span>
+
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <script>
+        new Vue({
+            el: '#app',
+            data: {
+                age:'123a',
+                selected: 'A',
+                options: [{
+                        text: 'One',
+                        value: 'A'
+                    },
+                    {
+                        text: 'Two',
+                        value: 'B'
+                    },
+                    {
+                        text: 'Three',
+                        value: 'C'
+                    }
+                ]
+            }
+        })
+    </script>
+</body>
+
+</html>
