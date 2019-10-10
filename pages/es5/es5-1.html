@@ -13,7 +13,7 @@
         //判断成绩功能
         let score1 = [{
                 id: 1,
-                price: 123
+                price: 12311
             },
             {
                 id: 2,
@@ -29,16 +29,16 @@
         console.log(result1);
 
 
-        // 判断成绩功能
+        // 遍历
         let score2 = [100, 20, 30, 40, 12, 99, 21];
         score2.forEach((item, index) => {
-            console.log(item);
+            // console.log(item);
         });
 
 
         // 方法创建一个新数组，其结果是该数组中的每个元素都调用一个提供的函数后返回的结果。
         let score3 = [100, 20, 30, 40, 12, 99, 21];
-        let result3 = score3.map(item => item > 60 ? '成功' : '失败');
+        let result3 = score3.map(item => item >= 60 ? '及格' : '不及格');
         console.log(result3);
 
         let score4 = [100, 20, 30, 40, 12, 99, 21];
@@ -52,6 +52,26 @@
             }
         });
         console.log(result4);
+
+        //some() 方法测试数组中是不是有元素通过了被提供的函数测试。它返回的是一个Boolean类型的值。
+        var array = [1, 2, 3, 4, 5];
+
+        var even = function (element) {
+            // checks whether an element is even
+            return element % 2 === 0;
+        };
+
+        console.log(array.some(even));
+
+        // every() 方法测试一个数组内的所有元素是否都能通过某个指定函数的测试。它返回一个布尔值。
+        function isBelowThreshold(currentValue) {
+            return currentValue < 40;
+        }
+
+        var array1 = [1, 30, 39, 29, 10, 13];
+
+        console.log(array1.every(isBelowThreshold));
+        // expected output: true
     </script>
 </body>
 

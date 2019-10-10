@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>dom 基础测试38</title>
+    <style>
+        input:invalid {
+            background-color: pink;
+        }
+    </style>
+</head>
+
+<body>
+    <input type="button" id="removeDisabled" value="全部都可用">
+    <input type="radio" value="1" name="bookName" required>沐神记
+    <input type="radio" value="2" name="bookName" disabled>放开那条龙
+    <input type="radio" value="3" name="bookName">重生之扫地僧
+    <fieldset disabled>
+        <input type="radio" value="ba1" name="bookAuthor">宅猪
+        <input type="radio" value="ba2" name="bookAuthor" checked>西红柿
+        <input type="radio" value="ba3" name="bookAuthor">莫默
+    </fieldset>
+    <script>
+        let requiredArr = document.querySelectorAll('input[type="radio"]:required');
+        console.log(requiredArr);
+        let disabledArr = document.querySelectorAll('input[type="radio"]:disabled');
+        console.log(disabledArr);
+
+        let checkedArr = document.querySelectorAll('input[type="radio"]:checked');
+        console.log(document.getElementById('removeDisabled'));
+
+        document.getElementById('removeDisabled').addEventListener('click', () => {
+            disabledArr.forEach(element => {
+                if (element.getAttribute('disabled') === null) {
+                    element.closest('fieldset').removeAttribute('disabled');
+                } else {
+                    element.removeAttribute('disabled');
+                };
+            })
+        });
+        let invalidArr = document.querySelectorAll('input[type="radio"]:invalid');
+        invalidArr.forEach(element => {
+            element.style.outline = '3px dashed red';
+        });
+    </script>
+</body>
+
+</html>
