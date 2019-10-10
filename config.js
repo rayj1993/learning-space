@@ -26,6 +26,7 @@ let unit = {
         'loginform',
         'textarea',
         'dialog',
+        'radio',
     ],
     'js': [
         'regex规则表达式',
