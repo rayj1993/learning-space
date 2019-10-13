@@ -61,6 +61,9 @@ let unit = {
         'Class 与 Style 绑定',
         '事件处理',
         'v-module 表单输入'
+    ],
+    'mixed': [
+        'svg'
     ]
 };
 
