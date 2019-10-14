@@ -60,7 +60,8 @@ let unit = {
         'computed，watch',
         'Class 与 Style 绑定',
         '事件处理',
-        'v-module 表单输入'
+        'v-module 表单输入',
+        '组件基础'
     ],
     'mixed': [
         'svg'
