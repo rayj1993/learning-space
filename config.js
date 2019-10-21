@@ -12,7 +12,8 @@ let unit = {
         '左中右',
         'navbar',
         'cell',
-        'absulute'
+        'absulute',
+        'github'
     ],
     'dom': [
         'backtop',
