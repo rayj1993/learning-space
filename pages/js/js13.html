@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>js 基础测试39</title>
+</head>
+
+<body>
+    <script>
+        // 1.
+        function colorPad(str = '') {
+            str = str.toLowerCase()
+            const reg = str.match(/^(?:#)?([0-9a-f]+)$/)
+            if (!reg) {
+                return '#000000'
+            }
+            str = reg[1]
+            if (str.length === 1 || str.length === 2) {
+                return '#'.padEnd(7, str)
+            } else if (str.length === 3) {
+                return '#' + str.split('').reduce((res, v) => res + v + v, '')
+            } else if (str.length === 6) {
+                return '#' + str
+            }
+            return '#000000'
+        }
+        console.log(colorPad('0!?=')) // #000000 不合法
+        console.log(colorPad('#a')) // #aaaaaa 重复a
+        console.log(colorPad('AF')) // #afafaf 重复af
+        console.log(colorPad('#fc0')) // #ffcc00 重复fc0
+        console.log(colorPad('#936c')) // #000000 不合法
+        console.log(colorPad('#93ecee')) // #93ecee 合法
+
+        // 2.
+        function randomHex() {
+            return ('#' + (Math.random() * 0x1000000 | 0).toString(16)).padEnd(7, 0)
+        }
+        console.log(randomHex())
+
+        // 3.
+
+        function range(a, b) {
+            const hexa = colorPad(a).replace('#', '0x')
+            const hexb = colorPad(b).replace('#', '0x')
+            const random = Math.min(hexa, hexb) + ((Math.random() * (Math.abs(hexa - hexb) + 1)))
+            return '#' + (random >> 0).toString(16).padEnd(6, 0)
+        }
+        console.log(range('#fc0', '#ffcc02'))
+    </script>
+</body>
+
+</html>
