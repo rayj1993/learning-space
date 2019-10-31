@@ -28,6 +28,7 @@ let unit = {
         'textarea',
         'dialog',
         'radio',
+        'drop',
     ],
     'js': [
         'regex规则表达式',

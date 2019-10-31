@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>dom 基础测试39</title>
+    <style>
+        dialog {
+            top: 0;
+            bottom: 0;
+        }
+
+        div {
+            width: 280px;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="box">
+        <img src="https://bookcover.yuewen.com/qdbimg/349573/1016479390/90">
+        <img src="https://bookcover.yuewen.com/qdbimg/349573/1016350338/90">
+        <img src="https://bookcover.yuewen.com/qdbimg/349573/1012394723/90">
+        <img src="https://bookcover.yuewen.com/qdbimg/349573/1016457437/90">
+    </div>
+    <script>
+        let obj = null
+        let box = document.getElementById('box')
+        document.addEventListener('mouseup', function (e) {
+            const target = e.target
+            if (target.nodeName === 'IMG' && box.contains(target)) {
+                if (obj) {
+                    obj.remove()
+                }
+                let newDialog = document.createElement('dialog')
+                // newDialog.setAttribute('open', '开启')
+                let imgBox = document.createElement('img')
+                imgBox.setAttribute('src', target.src.replace(/90$/, '180'))
+                newDialog.appendChild(imgBox)
+                newDialog.setAttribute('id', 'favDialog')
+                obj = newDialog
+                document.body.appendChild(newDialog)
+                var dialog = document.getElementById('favDialog')
+                dialog.showModal()
+            } else {
+                if (obj) {
+                    obj.remove()
+                }
+            }
+        })
+        // 存储变量
+        var dragged;
+
+        document.addEventListener("dragstart", function (event) {
+            dragged = event.target;
+        }, false);
+
+
+        /* 放下目标节点时触发事件 */
+        document.addEventListener("dragover", function (event) {
+            // 阻止默认动作
+            event.preventDefault();
+        }, false);
+
+        document.addEventListener("dragenter", function (event) {
+            if (event.target.nodeName === 'IMG') {
+                var enterIndex = [].indexOf.call(box.childNodes, event.target);
+                var index = [].indexOf.call(box.childNodes, dragged);
+                if (index > enterIndex) {
+                    dragged.parentNode.insertBefore(dragged, event.target);
+                } else {
+                    dragged.parentNode.insertBefore(dragged, event.target.nextSibling);
+                }
+            }
+
+        }, false);
+
+
+        document.addEventListener("drop", function (event) {
+            // 阻止默认动作（如打开一些元素的链接）
+            // event.preventDefault();
+            // 移动拖动的元素到所选择的放置目标节点
+            // if (event.target.nodeName === 'IMG') {
+            //     /**
+            //      * 1. 如果元素后面没有了，那就和之前一个搞
+            //      */
+            //     if (event.target) {
+            //         dragged.parentNode.insertBefore(dragged, event.target.nextSibling);
+            //     } else {
+            //         dragged.parentNode.insertBefore(dragged, event.target);
+            //     }
+            //     event.target.style.opacity = 1;
+            // }
+
+        }, false);
+    </script>
+</body>
+
+</html>
+<script>
+
+</script>
