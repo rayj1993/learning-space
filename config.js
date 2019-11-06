@@ -13,7 +13,8 @@ let unit = {
         'navbar',
         'cell',
         'absulute',
-        'github'
+        'svg-btn',
+        'before-after'
     ],
     'dom': [
         'backtop',
