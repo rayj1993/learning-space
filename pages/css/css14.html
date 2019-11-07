@@ -1,19 +1,124 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>css 基础测试14</title>
+    <style>
+        body {
+            background-color: #0e0e0e;
+        }
+
+        .step {
+            color: #009fe9;
+            text-decoration: none;
+            display: inline-block;
+            position: relative;
+            line-height: 40px;
+            padding: 0 20px;
+        }
+
+        .step.active {
+            color: #fff;
+        }
+
+
+        .step::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 0;
+            right: 0;
+            bottom: 20px;
+            background-color: #edf9ff;
+            transform: skewX(40deg);
+            z-index: -1;
+        }
+
+        .step::after {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 20px;
+            right: 0;
+            bottom: 0;
+            background-color: #edf9ff;
+            transform: skewX(-40deg);
+            z-index: -1;
+        }
+
+        .step:first-child::before {
+            right: -9px;
+            background-color: transparent;
+            transform: skew(0);
+            border-bottom: 20px solid #edf9ff;
+            border-left: 0 solid transparent;
+            border-right: 17px solid transparent;
+        }
+
+        .step:first-child::after {
+            right: -9px;
+            background-color: transparent;
+            transform: skew(0);
+            border-top: 20px solid #edf9ff;
+            border-left: 0 solid transparent;
+            border-right: 17px solid transparent;
+        }
+
+        .step:hover {
+            color: #fff;
+        }
+
+        .step:hover:not(:first-of-type)::before,
+        .step:hover:not(:first-of-type)::after {
+            background-color: #009fe9;
+        }
+
+      
+        .step:hover::before {
+            border-bottom-color: #009fe9;
+        }
+
+        .step:hover::after {
+            border-top-color: #009fe9;
+        }
+
+        .step.active::before,
+        .step.active::after {
+            background-color: #009fe9;
+        }
+
+        .step.active~a {
+            color: #8c8c8c;
+            cursor: not-allowed;
+        }
+
+        .step.active~a::before {
+            background-color: #ebedf0;
+        }
+
+        .step.active~a::after {
+            background-color: #ebedf0;
+        }
+        
+        .step.active~a:hover::before,
+        .step.active~a:hover::after {
+            background-color: #ebedf0;
+        }
+    </style>
 </head>
+
 <body>
     <!-- https://image.zhangxinxu.com/image/blog/201911/group.png -->
     <div>
-        <a href="">1-规则说明</a>
-        <a href="">2-参与活动</a>
-        <a href="">3-参与抽奖</a>
-        <a href="">4-奖品发放</a>
-        <a href="">5-查看结果</a>
+        <a href="javascript:" aria-label="规则说明" class="step">1-规则说明</a>
+        <a href="javascript:" aria-label="参与活动" class="step">2-参与活动</a>
+        <a href="javascript:" aria-label="参与抽奖" class="step active">3-参与抽奖</a>
+        <a href="javascript:" aria-label="奖品发放" class="step">4-奖品发放</a>
+        <a href="javascript:" aria-label="查看结果" class="step">5-查看结果</a>
     </div>
 </body>
+
 </html>
