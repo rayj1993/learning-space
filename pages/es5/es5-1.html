@@ -9,20 +9,23 @@
 </head>
 
 <body>
+    <div>1</div>
+    <div>2</div>
+    <div>3</div>
     <script>
         //判断成绩功能
         let score1 = [{
-                id: 1,
-                price: 12311
-            },
-            {
-                id: 2,
-                price: 13212
-            },
-            {
-                id: 3,
-                price: 123
-            }
+            id: 1,
+            price: 12311
+        },
+        {
+            id: 2,
+            price: 13212
+        },
+        {
+            id: 3,
+            price: 123
+        }
         ];
         // 反正就是要里面有个布尔值来判断是否要return 方法创建一个新数组, 其包含通过所提供函数实现的测试的所有元素
         let result1 = score1.filter(item => item.price > 10000);
@@ -34,7 +37,11 @@
         score2.forEach((item, index) => {
             // console.log(item);
         });
-
+        // 如果只是一个类数组，就可以用form
+        let domColl = document.querySelectorAll('div');
+        Array.from(domColl).forEach(item => {
+            console.log(item)
+        })
 
         // 方法创建一个新数组，其结果是该数组中的每个元素都调用一个提供的函数后返回的结果。
         let score3 = [100, 20, 30, 40, 12, 99, 21];

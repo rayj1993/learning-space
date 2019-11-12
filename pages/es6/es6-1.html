@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Document</title>
+    <title>class 类</title>
 </head>
 
 <body>
@@ -26,10 +26,14 @@
         var u = new User('w我我', 18);
         // u.showName();
         // u.showAge();
-        //继承
+
+
+        // 继承 extends
         class VipUser extends User {
             constructor(name, age, level) {
+                // 超类 父类
                 super(name, age);
+                //  自己的
                 this.level = level;
             }
             showLevel() {
@@ -56,6 +60,7 @@
         //     User.call(this,name,age);
         //     this.level = level;
         // }
+        // 老的继承书写方式
         // VipUser.prototype = new User();
         // VipUser.prototype.constructor = VipUser;
         // VipUser.prototype.showLevel= function(){
