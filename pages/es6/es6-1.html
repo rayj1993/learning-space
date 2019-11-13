@@ -43,6 +43,11 @@
         let v = new VipUser('我', 18, 9999999);
         v.showLevel();
         v.showName();
+
+        var p = new VipUser('l', 18, 1);
+
+        // document.onclick = p.showLevelno
+        document.onclick = p.showLevel.bind(p)
         // function User(name,age){
         //     this.name = name;
         //     this.age = age;

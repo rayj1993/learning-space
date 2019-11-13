@@ -5,18 +5,32 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Document</title>
+    <title>generator</title>
 </head>
 
 <body>
+    <script src="https://cdn.staticfile.org/jquery/1.10.2/jquery.min.js"></script>
     <script>
         function* doSometing() {
             console.log(1);
-            yield;
-            console.log(2);
+            let b = yield 66666;
+            console.log(b);
+            return 555555;
         }
         var obj = doSometing();
-        obj.next();
+        var a = $.ajax({
+            url: 'es6-1.html',
+            dataType: "html",
+            // success(arr) {
+            // },
+            // error(arr) {
+            // }
+        }).then(html => {
+            var res = obj.next(html);
+            console.log(res)
+        }, error => {
+            console.log(error)
+        })
     </script>
 </body>
 
