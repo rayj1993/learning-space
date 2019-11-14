@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>js 基础测试40</title>
+</head>
+
+<body>
+    <script>
+        function toCamelCase(str) {
+
+            return str.replace(/-./g, function (match) {
+                return match.replace('-', '').toUpperCase()
+            })
+
+        }
+        console.log(toCamelCase('abc-def-ghi'))
+
+        function toDashJoin(str) {
+
+            return str.replace(/[A-Z]/g, function (match) {
+                return '-' + match.toLowerCase()
+            })
+
+        }
+        console.log(toDashJoin('abcDefGhi'))
+
+        function toCapitalize(str) {
+
+            let newString = str.replace(/ ./g, function (match) {
+                return match.toUpperCase()
+            })
+            return newString.charAt(0).toUpperCase() + newString.slice(1)
+
+        }
+        console.log(toCapitalize('i like css'))
+
+        function toBetterUrl(str) {
+
+            return str.toLowerCase().replace(/\s+/g, '-')
+
+        }
+        console.log(toBetterUrl('CSS value type'))
+        
+    </script>
+</body>
+
+</html>
