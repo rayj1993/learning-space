@@ -30,6 +30,7 @@ let unit = {
         'dialog',
         'radio',
         'drop',
+        'keybord',
     ],
     'js': [
         'regex规则表达式',

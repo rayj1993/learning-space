@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>dom 基础测试40</title>
+    <style>
+        li.selected {
+            color: red;
+        }
+    </style>
+</head>
+
+<body>
+    <input id="input">
+    <ul id="list">
+        <li>列表1</li>
+        <li>列表2</li>
+        <li>列表3</li>
+    </ul>
+    <script>
+        let inputDom = document.getElementById('input'),
+            list = document.getElementById('list'),
+            lis = list.children,
+            listLength = lis.length,
+            dom = null
+
+        list.addEventListener('click', e => {
+            if (dom instanceof HTMLElement) {
+                dom.classList.remove('selected')
+            }
+            dom = e.target
+            e.target.classList.add('selected')
+            inputDom.value = e.target.innerText
+        })
+
+        document.onkeyup = e => {
+            if (e.keyCode === 38 || e.keyCode === 40) {
+                let clickIndex = 0
+                if (dom instanceof HTMLElement) {
+                    // 正好的位置
+                    clickIndex = [].indexOf.call(lis, dom)
+                    // 这里要选择是加还是减
+                    if (e.keyCode === 38) {
+                        clickIndex--
+                    } else {
+                        clickIndex++
+                    }
+                } else {
+                    if (e.keyCode === 38) {
+                        clickIndex = listLength - 1
+                    }
+                }
+                clickIndex = clickIndex < 0 ? listLength - 1 : clickIndex === listLength ? 0 : clickIndex
+                // 获取在list里的位置
+                lis[clickIndex].click()
+            }
+        }
+    </script>
+</body>
+
+</html>
+<script>
+
+</script>
