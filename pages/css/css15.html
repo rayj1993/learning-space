@@ -14,45 +14,103 @@
         body {
             margin: 0;
             background-color: #524940;
-
         }
 
         a {
             text-decoration: none;
         }
 
+
         .svg-icon {
-            /* position: absolute; */
-            /* right: 0;
-            bottom: 1.625rem;
+            position: absolute;
+            right: 0;
+            top: 50px;
             left: 0;
-            margin: auto; */
-            width: 24px;
-            height: 24px;
+            margin: auto;
+            fill: #f7f1ee;
+            width: 60px;
+            height: 60px;
         }
 
         .coo-nav {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-            color: #524940;
-            padding: 15px;
             position: relative;
-            background-color: currentColor;
-            grid-gap: 1px;
+            font-size: 0;
         }
 
-        /* 
+        .coo-nav::before {
+            content: '';
+            position: absolute;
+            width: 1px;
+            height: 100%;
+            right: -1px;
+            background-color: #524940;
+            z-index: 1;
+        }
+
+        .coo-nav::after {
+            content: '';
+            position: absolute;
+            width: 100%;
+            height: 1px;
+            left: 0;
+            bottom: -1px;
+            background-color: #524940;
+            z-index: 1;
+        }
+
+        .coo-nav-a :only-child {
+            height: 100%;
+        }
+
         .coo-nav-a {
-            outline: 1px solid;
+            display: inline-block;
             position: relative;
+            width: 20%;
+            height: 200px;
+            text-align: center;
+            color: #f7f1ee;
+        }
+
+
+
+        .coo-nav-a::before {
+            content: '';
+            position: absolute;
+            border-left: 1px solid;
+            right: -1px;
+            top: 15px;
+            bottom: 15px;
+        }
+
+        .coo-nav-a::after {
+            content: '';
+            position: absolute;
+            border-top: 1px solid;
+            bottom: -1px;
+            left: 15px;
+            right: 15px;
         }
 
         .coo-nav-span {
             position: absolute;
             right: 0;
-            bottom: 3px;
+            bottom: 50px;
             left: 0;
-        } */
+            color: #f7f1ee;
+            font-size: 16px;
+        }
+
+        @media screen and (max-width: 752px) {
+            .coo-nav-a {
+                width: 25%;
+            }
+        }
+
+        @media screen and (max-width: 564px) {
+            .coo-nav-a{
+                width: 33.3333333333%;
+            }
+        }
     </style>
 </head>
 
@@ -62,39 +120,37 @@
             <svg class="svg-icon">
                 <use xlink:href="#icon-watch"></use>
             </svg>
-            <span class="coo-nav-h4">商品秒杀</span>
+            <span class="coo-nav-span">商品秒杀</span>
         </a>
         <a href="#" class="coo-nav-a">
             <svg class="svg-icon">
                 <use xlink:href="#icon-fork"></use>
             </svg>
-            <span class="coo-nav-h4">企业团购</span>
+            <span class="coo-nav-span">企业团购</span>
         </a>
         <a href="#" class="coo-nav-a">
             <svg class="svg-icon">
                 <use xlink:href="#icon-star"></use>
             </svg>
-            <span class="coo-nav-h4">私码通道</span>
+            <span class="coo-nav-span">私码通道</span>
         </a>
         <a href="#" class="coo-nav-a">
-            <i class="icon icon-times"></i>
-            <span class="coo-nav-h4">铁粉卡</span>
+            <svg class="svg-icon">
+                <use xlink:href="#icon-star"></use>
+            </svg>
+            <span class="coo-nav-span">私码通道</span>
         </a>
         <a href="#" class="coo-nav-a">
-            <i class="icon icon-times"></i>
-            <span class="coo-nav-h4">以旧换新</span>
+            <svg class="svg-icon">
+                <use xlink:href="#icon-fork"></use>
+            </svg>
+            <span class="coo-nav-span">企业团购</span>
         </a>
         <a href="#" class="coo-nav-a">
-            <i class="icon icon-times"></i>
-            <span class="coo-nav-h4">话费充值</span>
-        </a>
-        <a href="#" class="coo-nav-a">
-            <i class="icon icon-times"></i>
-            <span class="coo-nav-h4">话费充值</span>
-        </a>
-        <a href="#" class="coo-nav-a">
-            <i class="icon icon-times"></i>
-            <span class="coo-nav-h4">话费充值</span>
+            <svg class="svg-icon">
+                <use xlink:href="#icon-star"></use>
+            </svg>
+            <span class="coo-nav-span">私码通道</span>
         </a>
     </nav>
     <!-- svg sprite -->
