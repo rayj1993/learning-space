@@ -10,15 +10,45 @@
 
 <body>
     <script>
-        function telRex(str) {
-            let strTel = str
-            // 第一题
-            strTel = strTel.trim()
-            // 第二题
-            // strTel = strTel.replace(//g,)
-            return strTel
+        // 第一题
+        function strTrim(str) {
+            return str.trim()
         }
-        console.log(telRex(' 13208033621 '));
+        console.log(strTrim(' 13208033621 '));
+
+        // 第二题
+        function strDoubleByte(str) {
+            const doubleByte = '０１２３４５６７８９';
+            str = str.replace(' ','');
+            return doubleByte.split('').reduce((str, s, idx) => {
+                return str.replace(new RegExp(s, 'g'), idx)
+            }, str);
+        }
+        console.log(strDoubleByte(' １　３　２　０　８　０　３　３　６　２　１  '));
+
+        // 第三题
+        function strRemove86(str) {
+            return str.replace(/\+/g, function (match) {
+                return match.replace('-', '').toUpperCase()
+            })
+        }
+        console.log(strRemove86('+8613208033621'));
+
+        // 第四题
+        // function strRegular1(str) {
+        //     let strTel = str
+        //     strTel = strTel.trim()
+        //     return strTel
+        // }
+        // console.log(telRex(' 13208033621 '));
+
+        // 第五题
+        // function strRegular1(str) {
+        //     let strTel = str
+        //     strTel = strTel.trim()
+        //     return strTel
+        // }
+        // console.log(telRex(' 13208033621 '));
     </script>
 </body>
 
