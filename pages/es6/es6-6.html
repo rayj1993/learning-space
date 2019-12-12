@@ -1,14 +1,28 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Document</title>
+    <title>querySelector</title>
 </head>
+
 <body>
+    <div class="j-div">
+        1
+    </div>
+    <div class="j-div">
+        2
+    </div>
     <script>
-        
+        const $ = function (...arr) {
+            return document.querySelectorAll(...arr)
+        }
+
+        // const $ = document.querySelectorAll.bind(document)
+        console.log($('.j-div')[0]);
     </script>
 </body>
+
 </html>
