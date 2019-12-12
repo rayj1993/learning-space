@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>dom 基础测试1</title>
+    <style>
+
+    </style>
+</head>
+
+<body>
+    <p>132-0803-3621 （短横线需要过滤）</p>
+    <p>132-0803-3621@qq.com （短横线不能过滤）</p>
+    <form id="form">
+        <input id="input" placeholder="邮箱或密码">
+        <button type="submit">submit</button>
+    </form>
+    <script>
+        // 第一题
+        function telTrim(str) {
+            if (str.indexOf('@') === -1) {
+                return str.replace(/\D/g, '')
+            } else {
+                return str
+            }
+        }
+        console.log(telTrim('132-0803-3621@qq.com'))
+        console.log(telTrim('132-0803-3621'))
+        // 第二题
+        let formX = document.querySelector('#form')
+        let inputX = document.querySelector('#input')
+
+        // 第三题
+        inputX.addEventListener('input', function (e) {
+            if (e.inputType == "insertFromDrop") {
+                e.target.value = telTrim(e.target.value);
+            }
+        });
+
+        // 第四题
+        inputX.addEventListener('input', function (e) {
+            if (e.inputType == "insertFromPaste") {
+                e.target.value = telTrim(e.target.value);
+            }
+        });
+
+        // 第五题
+        formX.addEventListener('submit', function (e) {
+            e.preventDefault()
+            inputX.value = telTrim(inputX.value);
+        });
+    </script>
+</body>
+
+</html>
