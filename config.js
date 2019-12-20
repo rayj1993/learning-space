@@ -32,6 +32,7 @@ let unit = {
         'radio',
         'drop',
         'keybord',
+        'input'
     ],
     'js': [
         'regex规则表达式',
