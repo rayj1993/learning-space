@@ -14,7 +14,8 @@ let unit = {
         'cell',
         'absulute',
         'svg-btn',
-        'before-after'
+        'before-after',
+        '布局'
     ],
     'dom': [
         'backtop',
