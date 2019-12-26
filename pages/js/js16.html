@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>js 基础测试42</title>
+</head>
+
+<body>
+    <script>
+        // 如果在emoji范围内，就两个算一个，其他就是1
+        let title = '🎅🎄🎁❤️🚀圣诞快乐，系列有9了'
+        
+        function str(str) {
+            let tempStr = String(str)
+            let len = 0
+            for (let i = 0; i < tempStr.length; i++) {
+                if (tempStr.charCodeAt(i) > 127 || tempStr.charCodeAt(i) === 94) {
+                    len += 2
+                } else {
+                    len++
+                }
+            }
+        }
+        // str(title)
+        // 首先什么情况下是15个字符长度呢？我觉得一个字就算一个，还是
+        console.log(title.replace())
+    </script>
+</body>
+
+</html>
