@@ -11,22 +11,29 @@
 <body>
     <script>
         // 如果在emoji范围内，就两个算一个，其他就是1
-        let title = '🎅🎄🎁❤️🚀圣诞快乐，系列有9了'
-        
-        function str(str) {
-            let tempStr = String(str)
-            let len = 0
-            for (let i = 0; i < tempStr.length; i++) {
-                if (tempStr.charCodeAt(i) > 127 || tempStr.charCodeAt(i) === 94) {
-                    len += 2
-                } else {
-                    len++
-                }
+        // let title = '🎅🎄🎁❤️🚀圣诞快乐，系列有9了'
+        // 第一题
+        function ellipsisStr1(str) {
+            let len = str.length
+            if (len > 15) {
+                return str.substr(0, 6) + '...' + str.substr(len - 6, len)
             }
+            return str
         }
-        // str(title)
+        console.log(ellipsisStr1('asdasdas12312312d'))
+        // 第二题
+        function ellipsisStr2(str) {
+            let len = str.length
+            if (len > 15) {
+                let endStr = str.match(/\w?\.\w+/gi)[0]
+                let benginStr = 15 - 3 - endStr.length
+                return str.substr(0, benginStr) + '...' + endStr
+            }
+            return str
+        }
+        console.log(ellipsisStr2('weixin_20191221232646.jpeg'))
         // 首先什么情况下是15个字符长度呢？我觉得一个字就算一个，还是
-        console.log(title.replace())
+        // console.log(title.replace())
     </script>
 </body>
 
