@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>dom 基础测试42</title>
+</head>
+
+<body>
+    <!-- 覆盖 history.go(-1) location.replace('#xxx') -->
+    <button id="showButton">显示浮层</button>
+    <div id="overlay" hidden>浮层</div>
+    <script>
+        window.onload = () => {
+            let url = window.location
+            let buttonDom = document.querySelector('#showButton')
+            let divDom = document.querySelector('#overlay')
+            showButton.addEventListener('click', function () {
+                let state = divDom.getAttribute('hidden')
+                let href = url.origin + url.pathname
+                if (state === null) {
+                    divDom.setAttribute('hidden', 'hidden')
+                    url.replace(href)
+                } else {
+                    divDom.removeAttribute('hidden')
+                    url.replace(href + '#' + divDom.getAttribute('id'))
+                }
+            })
+            let domHash = url.hash
+            if (domHash !== '') {
+                domHash = domHash.replace('#', '');
+                document.querySelector('#' + domHash).removeAttribute('hidden')
+            }
+        }
+    </script>
+</body>
+
+</html>
