@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>css 基础测试17</title>
+    <style>
+        img:first-child {
+            height: 100%;
+        }
+
+        .img-div {
+            width: 100px;
+            height: 100px;
+        }
+
+        .img-div:first-child {
+            width: 100px;
+            height: 200px;
+        }
+
+        .container {
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr;
+            grid-template-rows: 1fr 1fr;
+            grid-template-areas:
+                "index1 index2 index4"
+                "index1 index3 index5";
+        }
+
+        .index1 {
+            grid-area: index1;
+        }
+
+        .index2 {
+            grid-area: index2;
+        }
+
+        .index3 {
+            grid-area: index3;
+        }
+
+        .index4 {
+            grid-area: index4;
+        }
+
+        .index5 {
+            grid-area: index5;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <div class="img-div index1">
+            <img src="http://static.jsbin.com/images/dave.min.svg">
+        </div>
+        <div class="img-div index2">
+            <img src="http://static.jsbin.com/images/dave.min.svg">
+        </div>
+        <div class="img-div index3">
+            <img src="http://static.jsbin.com/images/dave.min.svg">
+        </div>
+        <div class="img-div index4">
+            <img src="http://static.jsbin.com/images/dave.min.svg">
+        </div>
+        <div class="img-div index5">
+            <img src="http://static.jsbin.com/images/dave.min.svg">
+        </div>
+    </div>
+</body>
+
+</html>

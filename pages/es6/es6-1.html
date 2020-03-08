@@ -73,6 +73,26 @@
         // }
         // var v = new VipUser('我',18,9999999);
         // v.showLevel();
+        // prop属性有对应的存值函数和取值函数
+        class MyClass {
+            constructor() {
+                // ...
+            }
+            get prop() {
+                return 'getter123';
+            }
+            set prop(value) {
+                console.log('setter: ' + value);
+            }
+        }
+
+        let inst = new MyClass();
+
+        inst.prop = 123;
+        // setter: 123
+
+        console.log(inst.prop)
+        // 'getter'
     </script>
 </body>
 
