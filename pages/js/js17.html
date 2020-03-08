@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>js 基础测试43</title>
+</head>
+
+<body>
+    <script>
+        let data = [{
+            'id': 1,
+            'name': '张三',
+            'value': '技术部',
+        }, {
+            'id': 2,
+            'name': '李四',
+            'value': '技术部',
+        }, {
+            'id': 3,
+            'name': '王五',
+            'value': '产品部',
+        }]
+
+        function getKey(key) {
+            let arr = []
+            data.forEach((item) => {
+                arr.push(item[key])
+            })
+            return Array.from(new Set(arr))
+        }
+        console.log(getKey('value'))
+
+        // [...data.reduce((acc,cur)=>acc.add(cur.value),new Set())]
+    </script>
+</body>
+
+</html>
