@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>dom 基础测试43</title>
+  <style>
+    /* .header {
+    height: 300px;
+    background: lightgray;
+    }
+    .content {
+    position: relative;
+    writing-mode: vertical-lr;
+    width:100%;
+    }
+    .nav-wrap{
+    writing-mode: horizontal-tb;
+    display: inline-block;
+    margin-top: -50%;
+    width: 100%;
+    text-align: center;
+    }
+    .nav {
+    display: inline-block;
+    border: 10px solid #53bff5;
+    border-radius: 10px;
+    }
+    .other{
+    display: inline-block;
+    position: absolute;
+    writing-mode: horizontal-tb;
+    width: 100%;
+    }
+    .crumb-ol {
+    display: flex;
+    flex-wrap: wrap;
+    margin: 0;
+    padding-left: 0;
+    list-style: none;
+    }
+    .crumb{
+    padding: 20px;
+    }
+    .crumb-img {
+    display: block;
+    height: 60px;
+    width: 40px;
+    margin: auto;
+    margin-bottom: 20px;
+    background: lightgreen;
+    } */
+    html {
+      background-color: #2d2d2d;
+      color: #fff;
+    }
+
+    .nav {
+      border: 10px solid #53bff5;
+      border-radius: 10px;
+    }
+
+    .nav-ol {
+      list-style: none;
+      display: flex;
+      flex-wrap: wrap;
+      margin: 0;
+      padding: 0;
+      justify-content: space-around;
+    }
+
+    .nav-img {
+      display: block;
+      height: 60px;
+      width: 40px;
+      margin: auto;
+      margin-bottom: 20px;
+      background: lightgreen;
+    }
+  </style>
+</head>
+
+<body>
+  <!-- <div class="header"></div>
+  <div class="content">
+    <div class="nav-wrap">
+      <nav class="nav">
+        <ol class="crumb-ol">
+          <li class="crumb">
+            <img class="crumb-img" />
+            <span class="crumb-text">进口食品</span>
+          </li>
+          <li class="crumb">
+            <img class="crumb-img" />
+            <span class="crumb-text">进口食品</span>
+          </li>
+          <li class="crumb">
+            <img class="crumb-img" />
+            <span class="crumb-text">进口食品</span>
+          </li>
+          <li class="crumb">
+            <img class="crumb-img" />
+            <span class="crumb-text">进口食品</span>
+          </li>
+        </ol>
+      </nav>
+    </div>
+    <div class="other">其他元素需要跟着一起往上挪</div>
+  </div> -->
+  <div style="background-color: red; height: 200px;">
+
+  </div>
+  <nav id="nav" class="nav">
+    <!-- 面包屑导航 -->
+    <ol class="nav-ol">
+      <li class="nav-li">
+        <img class="nav-img" />
+        <span class="nav-text">进口食品</span>
+      </li>
+      <li class="nav-li">
+        <img class="nav-img" />
+        <span class="nav-text">美妆护肤</span>
+      </li>
+      <li class="nav-li">
+        <img class="nav-img" />
+        <span class="nav-text">时令生鲜</span>
+      </li>
+      <li class="nav-li">
+        <img class="nav-img" />
+        <span class="nav-text">电脑数码</span>
+      </li>
+      <li class="nav-li">
+        <img class="nav-img" />
+        <span class="nav-text">热销榜</span>
+      </li>
+    </ol>
+  </nav>
+  <div>
+    asdasdasd
+  </div>
+  <script>
+    nav.style.marginTop = -(0.5 * nav.offsetHeight) + 'px';
+    window.addEventListener('resize', () => {
+      nav.style.marginTop = -(0.5 * nav.offsetHeight) + 'px';
+    });
+  </script>
+</body>
+
+</html>
