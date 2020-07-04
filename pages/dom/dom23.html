@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>dom 基础测试49</title>
+  <style>
+    select {
+      width: 100px;
+    }
+
+    option:hover {
+      background-color: red;
+    }
+  </style>
+</head>
+
+<body>
+  <form>
+    <select>
+      <option>1</option>
+      <option>2</option>
+      <option>3</option>
+      <option>4</option>
+    </select>
+  </form>
+  <script>
+    // 已知页面上有一个<select>下拉框元素，假设该元素的DOM对象是select，请问：
+    // 1. 请获得当前下拉框元素所在的<form>元素；
+    // 2. 请问，当前下拉框选中元素的索引值（选中项的序号）是多少？
+    // 3. 请问，我想知道第3个<options>元素的value属性值，代码该如何书写？
+    // 4. 设置select.value = 'xxx'并不能让<select>下拉框元素触发change事件，实现使用value属性赋值的时候，下拉框元素change事件可以被触发。
+    let selectDom = document.querySelector('select')
+    console.log(selectDom.closest('form'))
+    console.log(selectDom.selectedIndex)
+    console.log(selectDom[2].value)
+    const props = Object.getOwnPropertyDescriptor(HTMLSelectElement.prototype, 'value');
+    Object.defineProperty(HTMLSelectElement.prototype, 'value', {
+      ...props,
+      set(v) {
+        props.set.call(this, v);
+        this.dispatchEvent(new InputEvent('change'));
+      }
+    })
+  </script>
+</body>
+
+</html>

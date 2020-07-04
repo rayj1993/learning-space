@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>css 基础测试18</title>
+    <style>
+        body {
+            margin: 0;
+        }
+
+        .gallery {
+            height: 100vh;
+        }
+
+        .gallery-ol {
+            transform-style: preserve-3d;
+            perspective: 800px;
+            display: inline-block;
+            white-space: nowrap;
+            padding-left: 0;
+        }
+
+        .gallery-li {
+            display: inline-block;
+            list-style: none;
+        }
+
+        .gallery-li:nth-child(1) {
+            background-color: blueviolet;
+            /* z-index: 1; */
+            transform: translateZ(-400px);
+        }
+
+        .gallery-li:nth-child(2) {
+            background-color: brown;
+
+            /* left: 10%; */
+            /* z-index: 2; */
+            transform: translateZ(-100px);
+        }
+
+        .gallery-li:nth-child(3) {
+            background-color: burlywood;
+            /* left: 30%; */
+            /* z-index: 3; */
+            transform: translateZ(0);
+        }
+
+        .gallery-li:nth-child(4) {
+            background-color: cadetblue;
+            /* left: 50%; */
+            /* z-index: 2; */
+            transform: translateZ(-100px);
+        }
+
+        .gallery-li:nth-child(5) {
+            /* left: 60%; */
+            /* z-index: 1; */
+            transform: translateZ(-400px);
+        }
+    </style>
+</head>
+
+<body>
+    <!-- 
+        3D transform translateZ轴控制，
+        或者2D transform sacle控制都是可以的。
+        请避免横向定位，否则会降低日后的维护性和拓展性，要把定位的变量控制在1个是最佳的。.
+     -->
+    <div class="gallery">
+        <ol class="gallery-ol">
+            <li class="gallery-li"><img src="https://picsum.photos/600/800?random=1" /></li>
+            <li class="gallery-li"><img src="https://picsum.photos/600/800?random=2" /></li>
+            <li class="gallery-li"><img src="https://picsum.photos/600/800?random=3" /></li>
+            <li class="gallery-li"><img src="https://picsum.photos/600/800?random=4" /></li>
+            <li class="gallery-li"><img src="https://picsum.photos/600/800?random=5" /></li>
+        </ol>
+    </div>
+</body>
+
+</html>
