@@ -16,6 +16,35 @@
         //    按照 RGBA 不断循环。
 
         //    请把和白色 (255,255,255,255)容差范围在10以内的颜色转变成透明。
+
+        function fillColorHypot([...arr], [r, g, b, a], distance) {
+            for (let i = arr.length - 4; i >= 0; i -= 4) {
+                let [r1, b1, g1, a1] = arr.slice(i, i + 4);
+                // Math.hypot() 函数返回所有参数的平方和的平方根，即：
+                Math.hypot(r1 - r, g1 - g, b1 - b, a1 - a) <= distance && arr.splice(i, 4, 0, 0, 0, 0);
+            }
+            return arr;
+        }
+        let arrRGBA = [255, 255, 255, 255, 255, 255, 0, 255, 255, 250, 251, 246]
+        let output = fillColorHypot(arrRGBA, [255,
+            255, 255, 255
+        ], 10);
+        console.log(output); //[ 0, 0, 0, 0, 255, 255, 0, 255, 255, 250, 251, 246 ]
+        // function fillColorHypot([...arr], bgColor, distance) {
+        //     for (let i = arr.length - 4; i >= 0; i -= 4) {
+        //         let deltas = arr.slice(i, i + 4).map((v, i) => v - bgColor[i]);
+        //         let [max, min] = [Math.max(...deltas), Math.min(...deltas)];
+        //         if (max < 0) max = 0;
+        //         if (min > 0) min = 0;
+        //         Math.abs(max - min) <= distance && arr.splice(i, 4, 0, 0, 0, 0);
+        //     }
+        //     return arr;
+        // }
+        // let arrRGBA = [255, 255, 255, 255,
+        //     255, 255, 0, 255, 255, 250, 251, 246
+        // ]
+        // let output = fillColorHypot(arrRGBA, [255, 255, 255, 255], 10);
+        console.log(output); //[ 0, 0, 0, 0, 255, 255, 0, 255, 0, 0, 0, 0 ]
     </script>
 </body>
 
