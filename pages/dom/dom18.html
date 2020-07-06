@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>dom 基础测试44</title>
+  <style>
+    html,
+    body {
+      margin: 0;
+      padding: 0;
+    }
+
+    #demo {
+      position: relative;
+      perspective: 200px;
+      transform-style: preserve-3d;
+      overflow: hidden;
+    }
+
+    #demo::after {
+      content: '';
+      display: block;
+      padding-top: 42.7%;
+      /* 宽高比参照375/160 */
+    }
+
+    .pic {
+      position: absolute;
+      height: 100%;
+      transition: all .5s ease-in-out;
+    }
+
+    .pic:nth-of-type(1) {
+      left: 10%;
+      transform: translateX(-50%) translateZ(-30px);
+    }
+
+    .pic:nth-of-type(2) {
+      left: 30%;
+      transform: translateX(-50%) translateZ(-15px);
+    }
+
+    .pic:nth-of-type(3) {
+      left: 50%;
+      transform: translateX(-50%);
+    }
+
+    .pic:nth-of-type(4) {
+      left: 70%;
+      transform: translateX(-50%) translateZ(-15px);
+      z-index: -1;
+    }
+
+    .pic:nth-of-type(5) {
+      left: 90%;
+      transform: translateX(-50%) translateZ(-30px);
+      z-index: -2;
+    }
+
+    .pic:nth-of-type(6) {
+      left: 10%;
+      transform: translateX(-50%) translateZ(-30px);
+      opacity: 0;
+    }
+  </style>
+</head>
+
+<body>
+  <div id="demo">
+    <img class="pic" src="https://placem.at/things?w=100&h=160&txt=1">
+    <img class="pic" src="https://placem.at/people?w=100&h=160&txt=2">
+    <img class="pic" src="https://placem.at/places?w=100&h=160&txt=3">
+    <img class="pic" src="https://placem.at/people?w=100&h=160&txt=4">
+    <img class="pic" src="https://placem.at/things?w=100&h=160&txt=5">
+  </div>
+  <script>
+    /*
+     * 1. 一直把15调换，然后234整体往左侧移动
+     */
+    let demo = document.getElementById('demo')
+
+    function toggle(init = false) {
+      let first = demo.querySelector('.pic')
+      if (init) {
+        /*
+         ** 多出一个子元素来替第一个子元素提前占位，避免第一个子元素移到最后一个时不能触发过渡（因为第一个子元素实际上是先移出，再插入的）
+         ** 实际上由于最后一个子元素永远是第一个子元素的复本，相当于移动时，从最后一个往前一位，这样就能触发过渡了
+         */
+        let firstCopy = first.cloneNode()
+        demo.appendChild(firstCopy)
+      } else {
+        let second = demo.querySelector('.pic:nth-of-type(2)')
+        demo.appendChild(first) // 将最第一个子元素插入到最后
+        first.outerHTML = second.outerHTML // 将最后一个子元素实时更新为当前第一个子元素的复本
+      }
+    }
+
+    toggle(true)
+    setInterval(toggle, 3000)
+  </script>
+</body>
+
+</html>

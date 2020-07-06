@@ -11,55 +11,25 @@
             margin: 0;
         }
 
-        .gallery {
-            height: 100vh;
-        }
-
-        .gallery-ol {
+        .img-wrap {
             transform-style: preserve-3d;
-            perspective: 800px;
-            display: inline-block;
-            white-space: nowrap;
-            padding-left: 0;
         }
 
-        .gallery-li {
-            display: inline-block;
-            list-style: none;
+        .img1 {
+            transform: translate3d(80%, 0, -10px) scale(0.8, 0.8);
         }
 
-        .gallery-li:nth-child(1) {
-            background-color: blueviolet;
-            /* z-index: 1; */
-            transform: translateZ(-400px);
+        .img2 {
+            /* 尺度 */
+            transform: translate3d(30%, 0, -5px) scale(0.9, 0.9);
         }
 
-        .gallery-li:nth-child(2) {
-            background-color: brown;
-
-            /* left: 10%; */
-            /* z-index: 2; */
-            transform: translateZ(-100px);
+        .img4 {
+            transform: translate3d(-30%, 0, -5px) scale(0.9, 0.9);
         }
 
-        .gallery-li:nth-child(3) {
-            background-color: burlywood;
-            /* left: 30%; */
-            /* z-index: 3; */
-            transform: translateZ(0);
-        }
-
-        .gallery-li:nth-child(4) {
-            background-color: cadetblue;
-            /* left: 50%; */
-            /* z-index: 2; */
-            transform: translateZ(-100px);
-        }
-
-        .gallery-li:nth-child(5) {
-            /* left: 60%; */
-            /* z-index: 1; */
-            transform: translateZ(-400px);
+        .img5 {
+            transform: translate3d(-80%, 0, -10px) scale(0.8, 0.8);
         }
     </style>
 </head>
@@ -70,14 +40,12 @@
         或者2D transform sacle控制都是可以的。
         请避免横向定位，否则会降低日后的维护性和拓展性，要把定位的变量控制在1个是最佳的。.
      -->
-    <div class="gallery">
-        <ol class="gallery-ol">
-            <li class="gallery-li"><img src="https://picsum.photos/600/800?random=1" /></li>
-            <li class="gallery-li"><img src="https://picsum.photos/600/800?random=2" /></li>
-            <li class="gallery-li"><img src="https://picsum.photos/600/800?random=3" /></li>
-            <li class="gallery-li"><img src="https://picsum.photos/600/800?random=4" /></li>
-            <li class="gallery-li"><img src="https://picsum.photos/600/800?random=5" /></li>
-        </ol>
+    <div class="img-wrap">
+        <img src="https://picsum.photos/200/300?random=1" alt="" class="img1">
+        <img src="https://picsum.photos/200/300?random=2" alt="" class="img2">
+        <img src="https://picsum.photos/200/300?random=3" alt="" class="img3">
+        <img src="https://picsum.photos/200/300?random=4" alt="" class="img4">
+        <img src="https://picsum.photos/200/300?random=5" alt="" class="img5">
     </div>
 </body>
 
