@@ -16,7 +16,8 @@ let unit = {
         'svg-btn',
         'before-after',
         '布局',
-        'transform'
+        'transform',
+        'linear-gradient'
     ],
     'dom': [
         'backtop',
