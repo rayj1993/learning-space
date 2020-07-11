@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>css 基础测试20</title>
+    <style>
+        .flex-wrapper {
+            display: flex;
+            /* flex-wrap: nowrap; */
+        }
+
+        .flex-content {
+            display: flex;
+            flex-wrap: wrap;
+           /* shrink是“收缩”的意思，flex-shrink主要处理当flex容器空间不足时候，单个元素的收缩比例。 */
+            /* flex-shrink: 1; */
+            height: 33px;
+            overflow: hidden;
+        }
+
+        span {
+            padding: 5px 10px;
+            border: 1px solid #ddd;
+        }
+
+        span.item {
+            flex-grow: 1;
+            display: inline-block;
+            text-align: center;
+            white-space: nowrap;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="flex-wrapper">
+        <span class="before">&lt;</span>
+        <div class="flex-content">
+            <span class="item">2020年4月-6月</span>
+            <span class="item">2020年1月-3月</span>
+            <span class="item">2020年度OKR</span>
+        </div>
+        <span class="next">&gt;</span>
+    </div>
+</body>
+
+</html>

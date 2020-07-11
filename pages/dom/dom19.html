@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>dom 基础测试45</title>
+  <style>
+
+  </style>
+</head>
+
+<body>
+  <script>
+    //  有一个自定义字体文件，地址是：../static/font/lota.woff2
+
+    //  现在，我们需要使用这个字体在Canvas画布上绘制一段文字，但是，如果这个字体还没有加载完毕的话，Canvas中使用fillText()方法绘制的文字是默认字体。
+
+    //  请实现：加载该字体文件，并准确判断字体加载成功的时机。
+    const webfont = new FontFace(
+      'webfont',
+      'url(//at.alicdn.com/t/webfont_sq70rrfeoea.woff)'
+    )
+
+    webfont
+      .load()
+      .then(font => {
+        document.fonts.add(font)
+      })
+      .then(() => {
+        const cvs = document.querySelector('canvas')
+        const ctx = cvs.getContext('2d')
+        ctx.font = '30px webfont'
+        ctx.fillText('执子之手', 50, 50)
+      })
+  </script>
+</body>
+
+</html>

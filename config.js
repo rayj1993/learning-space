@@ -35,7 +35,8 @@ let unit = {
         'drop',
         'keybord',
         'input',
-        'resize'
+        'resize',
+        'fonts'
     ],
     'js': [
         'regex规则表达式',

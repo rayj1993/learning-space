@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>js 基础测试45</title>
+</head>
+
+<body>
+    <script>
+        //    请写一个JS方法，可以随机生成4位的验证码字符，由数字和字母随机组成，字母都是大写;
+
+        //    例如： AZ88，7MM2， 2323，Z990等。
+
+        /*
+            1. 这里涉及到真随机，假随机
+            2. 我可以先确定是数字还是字幕
+            3. 数字就直接0-9
+            4. 字幕就随机24个字幕
+        */
+        // letter of the alphabet
+        let alphabet = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S',
+            'T', 'U', 'V', 'W', 'X', 'Y', 'Z'
+        ];
+
+        function code(n = 4) {
+            let number = '';
+            // 就数字
+            let i = 0;
+            while (i < n) {
+                if (Math.floor(Math.random() * 10) > 4) {
+                    number += Math.floor(Math.random() * 10)
+                } else {
+                    // 0 to 25
+                    number += alphabet[Math.floor(Math.random() * 26)];
+                }
+                i++;
+            }
+
+            return number;
+        }
+        console.log(code(4));
+        const getVerifyCode = () => Math.random().toString(36).substr(2, 4).toUpperCase();
+        console.log(getVerifyCode());
+
+    </script>
+</body>
+
+</html>
