@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>js 基础测试46</title>
+</head>
+
+<body>
+    <script>
+        // 如果sb前后否不是英文和数字，则过滤成**，如果前后是英文和数字，则忽略。
+        // 例如：你这个sb! -> 你这个**!
+        // 请访问jsbin. -> 请访问jsbin.
+
+        const keywordFilter = (str) => {
+            return str.replace(/.?sb.?/gi, (keyword) => {
+                if (/\wsb/gi.test(keyword) && /sb\w/gi.test(keyword)) {
+                    return keyword
+                } else {
+                    return keyword.replace('sb', '**')
+                }
+            })
+        }
+        console.log(keywordFilter('sb'))
+    </script>
+</body>
+
+</html>

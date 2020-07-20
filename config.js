@@ -17,7 +17,13 @@ let unit = {
         'before-after',
         '布局',
         'transform',
-        'linear-gradient'
+        'linear-gradient',
+        'translateZ',
+        'linear-gradient',
+        'flex-wrap: wrap;',
+        'word-break: keep-all;',
+        'text-align: justify;',
+        'clip-path',
     ],
     'dom': [
         'backtop',
@@ -36,7 +42,13 @@ let unit = {
         'keybord',
         'input',
         'resize',
-        'fonts'
+        'fonts',
+        'wrap',
+        'webfont.load',
+        'rem',
+        'visibilitychange',
+        'draggable',
+        'HTMLSelectElement',
     ],
     'js': [
         'regex规则表达式',
@@ -55,7 +67,13 @@ let unit = {
         '正则操作',
         '正则操作',
         'emoji',
-        '容差范围'
+        '容差范围',
+        'fillColorHypot',
+        'getVerifyCode',
+        'keywordFilter',
+        'Number.EPSILON',
+        'setInterval',
+        'sort',
     ],
     'es5': [
         '数组的扩展',

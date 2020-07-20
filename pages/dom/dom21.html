@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>dom 基础测试47</title>
+  <style>
+
+  </style>
+</head>
+
+<body>
+  <div></div>
+  <script>
+    // 请实现，无论从哪个页面哪种形式回到账户页（例如：切换浏览器选项卡或者APP的webview返回），或者首次进入账户页，都执行一次getAccount()方法。
+    // 本题考点在于如何判断当前页面进入可视态或者激活态。
+    document.addEventListener("visibilitychange", function () {
+      if (!document.hidden) {
+        getAccount();
+      }
+    })
+  </script>
+</body>
+
+</html>

@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>dom 基础测试46</title>
+  <style>
+
+  </style>
+</head>
+
+<body>
+  <img src="https://placem.at/things?w=100&h=160&txt=1" width="1rem" is="x-img">
+  <script>
+    // 此时图片宽度是130px，设置的单位rem被忽略了。请实现图片的width属性值如果有单位，则按照单位宽度渲染。
+    class XImg extends HTMLImageElement {
+
+      static get observedAttributes() {
+        return ['width'];
+      }
+
+      constructor() {
+        super();
+      }
+
+      get width() {
+        return this.getAttribute('width');
+      }
+
+      connectedCallback() {
+        this.render();
+      }
+
+      render() {
+        this.style.width = this.width;
+      }
+
+      attributeChangedCallback(name, oldValue, newValue) {
+        if (name === 'width') {
+          this.render();
+        }
+      }
+    }
+
+    customElements.define('x-img', XImg, {
+      extends: 'img'
+    });
+  </script>
+</body>
+
+</html>

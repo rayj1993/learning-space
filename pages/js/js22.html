@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>js 基础测试48</title>
+</head>
+
+<body>
+    <script>
+        // 在每年的5月20日13时14分，在浏览器的控制台输出'happy dog!'
+        (function () {
+            var timer;
+
+            function run520(params) {
+                if (new Date().setFullYear(1900) - new Date(1900, 4, 20, 13, 14) === 0) {
+                    console.log("happy dog!");
+                    // 只显示一次
+                    clearInterval(timer);
+                }
+            }
+            run520();
+            timer = setInterval(run520, 1000);
+        })();
+    </script>
+</body>
+
+</html>

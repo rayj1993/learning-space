@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>dom 基础测试48</title>
+  <style>
+    #draggable {
+      width: 200px;
+      height: 20px;
+      text-align: center;
+      background: white;
+    }
+
+    #dropzone {
+      position: absolute;
+      top: 300px;
+      width: 200px;
+      height: 20px;
+      background: blueviolet;
+      margin-bottom: 10px;
+      padding: 10px;
+    }
+
+    .abs {
+      position: absolute;
+      z-index: 1;
+    }
+  </style>
+</head>
+
+<body>
+  <div id="draggable">
+    被拖拽的元素
+  </div>
+  <div id="dropzone"></div>
+  <script>
+    // 移动端，页面上A，B两个div元素，请实现：
+    // 拖拽A元素到B元素上，A元素append到B元素中。
+    var draggable = document.querySelector('#draggable')
+    var dropzone = document.querySelector('#dropzone')
+    var {
+      width,
+      height
+    } = draggable.getBoundingClientRect()
+    var hasTouch = false
+    draggable.addEventListener('touchstart', touchstart)
+    document.addEventListener('touchmove', touchmove)
+    draggable.addEventListener('touchend', touchend)
+    draggable.addEventListener('touchcancel', reset)
+
+    function touchstart() {
+      hasTouch = true
+      draggable.classList.add('abs')
+    }
+
+    function touchmove(e) {
+      if (hasTouch) {
+        var touch = e.changedTouches[0]
+        var pageX = touch.pageX
+        var pageY = touch.pageY
+        Object.assign(draggable.style, {
+          left: pageX - width / 2 + 'px',
+          top: pageY - height / 2 + 'px'
+        })
+      }
+    }
+
+    function touchend(e) {
+      hasTouch = false
+      var touch = e.changedTouches[0]
+      var pageX = touch.pageX
+      var pageY = touch.pageY
+      var elements = document.elementsFromPoint(pageX, pageY)
+      if (elements.includes(dropzone)) {
+        dropzone.appendChild(draggable)
+        draggable.removeEventListener('touchstart', touchstart)
+        document.removeEventListener('touchmove', touchmove)
+        draggable.removeEventListener('touchend', touchend)
+        draggable.removeEventListener('touchcancel', reset)
+      }
+      reset()
+    }
+
+    function reset() {
+      draggable.classList.remove('abs')
+      Object.assign(draggable.style, {
+        left: '',
+        top: ''
+      })
+    }
+  </script>
+</body>
+
+</html>

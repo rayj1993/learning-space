@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>js 基础测试49</title>
+</head>
+
+<body>
+    <script>
+        //    已知数组：
+
+        //    let arr = [1, 'a', 123, '巴啦啦', 3, 'hi~', 66, 'anyString'];
+        //    其中的数组项均是一个数字带一个字符串，每一个数字和后面的字符串其实是一组。
+
+        //    请实现，整个数组基于数字进行排序（后面的字符自动跟在后面），也就是实现如下所示排序结果：
+
+        //    [1, 'a', 3, 'hi~', 66, 'anyString', 123, '巴啦啦']
+        let arr = [1, 'a', 123, '巴啦啦', 3, 'hi~', 1, 'hi~', 66, 'anyString'];
+
+        function sort(arr) {
+            for (let i = 0; i < arr.length; i += 2) {
+                for (let j = i + 2; j < arr.length; j += 2) {
+                    if (arr[j] < arr[i]) {
+                        [arr[i], arr[j]] = [arr[j], arr[i]];
+                        [arr[i + 1], arr[j + 1]] = [arr[j + 1], arr[i + 1]];
+                    }
+                }
+            }
+        }
+        sort(arr)
+        console.log(arr)
+    </script>
+</body>
+
+</html>

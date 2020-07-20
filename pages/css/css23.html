@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>css 基础测试23</title>
+    <style>
+        .tip {
+            display: none;
+            position: absolute;
+            top: 40px;
+            left: 0;
+            --h: 5px;
+            padding: 10px;
+            padding-top: calc(10px + var(--h));
+            background: linear-gradient(45deg, red, pink);
+            clip-path: polygon(0 var(--h), calc(20% - var(--h)) var(--h), 20% 0%, calc(20% + var(--h)) var(--h), 100% var(--h), 100% 100%, 0 100%)
+        }
+
+        a:hover+.tip {
+            display: block;
+        }
+    </style>
+</head>
+
+<body>
+    <a>show tip</a>
+    <div class="tip">替换素材让视频与众不同</div>
+</body>
+
+</html>
