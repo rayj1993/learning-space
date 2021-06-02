@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>slider</title>
+        <style>
+            body {
+                background: red;
+                margin: 0;
+                height: 400px;
+            }
+            .slider-x {
+                height: 500px;
+            }
+            .slider {
+                position: relative;
+                margin: 0 30px;
+                --percent: 0;
+                height: 100%;
+            }
+
+            .slider-track {
+                display: block;
+                width: 6px;
+                height: 100%;
+                background-color: lightgray;
+                border: 0;
+                padding: 0;
+            }
+
+            .slider-track::before {
+                content: '';
+                display: block;
+                height: 100%;
+                height: calc(1% * var(--percent));
+            }
+
+            .slider-thumb {
+                position: absolute;
+                width: 16px;
+                height: 16px;
+                border: 0;
+                padding: 0;
+                background: #fff;
+                top: calc(1% * var(--percent));
+                left: 3px;
+                margin: auto -8px;
+            }
+        </style>
+    </head>
+    <body>
+        <script>
+            // 在i-preview的开头插入代码
+            let slider = document.createElement('div');
+            slider.className = 'slider';
+            slider.innerHTML = '<button class="slider-track"></button><button class="slider-thumb"></button>';
+            document.body.appendChild(slider);
+            slider.style.setProperty('--percent', 50);
+
+            slider.addEventListener('mousedown', function (ev) {
+                const { top, height } = slider.getBoundingClientRect();
+                const percent = ((ev.clientY - top) / height) * 100;
+                render(slider, percent);
+                document.onmousemove = function (ev) {
+                    const percent = ((ev.clientY - top) / height) * 100;
+                    render(slider, percent);
+                };
+                document.onmouseup = function (ev) {
+                    document.onmousemove = null;
+                };
+            });
+
+            function render(slider, percent) {
+                percent = Math.min(Math.max(0, percent), 100);
+                slider.style.setProperty('--percent', parseInt(percent, 10));
+                // 这里取整导致有些不跟手的感觉（不过有些滑动条确实有步长的设置），只是为了让css-tip可以应用上'--percent属性（可以另外设置属性解决）
+            }
+        </script>
+    </body>
+</html>
